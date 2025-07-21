@@ -32,6 +32,9 @@
  *
  *  - label_logic_if_log
  *
+ *  - btn_rm_order
+ *  - label_ic_rm_order
+ *
  *  - btn_start_cf_ic
  *  - btn_start_cf
 ========================================================================== */
@@ -48,6 +51,7 @@
 
 #define ICON_SVG_BACK ":/icon/rsrc/Icon/feather/arrow-left.svg"
 #define ICON_SVG_ADD_WISH ":/icon/rsrc/Icon/feather/thumbs-up.svg"
+#define ICON_SVG_RM_WISH  ":/icon/rsrc/Icon/feather/thumbs-down.svg"
 #define ICON_SVG_START_CF ":/icon/rsrc/Icon/feather/tool.svg"
 
 
@@ -93,6 +97,19 @@ _b_config_logic_layer::_b_config_logic_layer(QWidget *parent)
 
         ui->label_ic_add_wishlist->setPixmap(renderSvgToPixmap(ICON_SVG_ADD_WISH
                                                                ,btn_wishlist_size));
+    }
+
+    // btn_rm_order
+    // label_ic_rm_order
+    {
+        QSize btn_rm_size = ui->btn_rm_order->size();
+        btn_rm_size.setWidth(btn_rm_size.height()); // square
+
+        ui->btn_rm_order->setStyleSheet(BTN_STYLE_DESIGN);
+
+        ui->label_5->setPixmap(renderSvgToPixmap(ICON_SVG_RM_WISH
+                                                               ,btn_rm_size));
+        ui->label_5->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
     }
 
     // btn_start_cf_ic
@@ -182,7 +199,7 @@ void _b_config_logic_layer::on_btn_add_wishlist_clicked()
 
     QString full_info = ui->label_stat_select->text(); // backup info board
 
-    if(!check_board_available_before_add_block_to_wishlish())
+    if(!check_board_available_before_add_block_to_wishlist())
     {
         // OK -> add to wish list
         wish_list.append(selected_block);
@@ -224,7 +241,7 @@ void _b_config_logic_layer::on_combox_list_order_currentIndexChanged(int index)
 
     const auto &block = wish_list[index];
 
-    QString info = QString("Wishlist logic block:\n- Code: %1\n- Desc: %2\n- Require: %3")
+    QString info = QString("Logic block:\n- Code: %1\n- Desc: %2\n- Require: %3")
                        .arg(block.lg_code,
                             block.lg_desc,
                             block.h_require);
@@ -284,7 +301,7 @@ void _b_config_logic_layer::try_connect_to_dev_board()
         this->board_info.b_code = reply->readAll();
 
         // update new data logic block code available for board to combox
-
+        try_get_list_logic_block_available();
     });
 
 }
@@ -403,12 +420,16 @@ void _b_config_logic_layer::try_get_list_logic_block_available()
     query.clear();
 
     query.prepare(QString(R"(
-query.prepare(R("SELECT "T3".code_logic,"T3".hardware_require,"T3".descript
-FROM "designed_dev_board" AS "T1"
-INNER JOIN "link_lcb_with_dev_board" AS "T2"
-INNER JOIN "logic_code_block" AS "T3"
-ON ("T1".[code_board] = "T2".[code_board]) AND ("T2".[code_logic]="T3".[code_logic])
-WHERE "T1".[code_board] = 'B0'"));)"));
+SELECT T3.code_logic, T3.hardware_require, T3.descript
+FROM designed_dev_board AS T1
+INNER JOIN link_lcb_with_dev_board AS T2
+ON T1.code_board = T2.code_board
+INNER JOIN logic_code_block AS T3
+ON T2.code_logic = T3.code_logic
+WHERE T1.code_board = :b_code
+)"));
+
+    query.bindValue(":b_code", this->board_info.b_code);
 
     if (!query.exec())
     {
@@ -453,7 +474,7 @@ WHERE "T1".[code_board] = 'B0'"));)"));
     }
 
     // disconnect link to database
-    disconnectFromSQLiteDB(NET_SERVICE_INFORM_UNIQUE_CONNECT_A_LOGIN_PAGE);
+    disconnectFromSQLiteDB(DEV_BOARD_DESIGNED_UNIQUE_CONNECT);
 }
 
 
@@ -476,7 +497,7 @@ WHERE "T1".[code_board] = 'B0'"));)"));
  *                      + update JSON limit of devboard by: s_id = s_id + require
  *                      + print success add to wishlist, print before, require, remain after
  */
-int _b_config_logic_layer::check_board_available_before_add_block_to_wishlish()
+int _b_config_logic_layer::check_board_available_before_add_block_to_wishlist()
 {
     // Parse JSON from string
     QJsonParseError err;
@@ -534,3 +555,233 @@ int _b_config_logic_layer::check_board_available_before_add_block_to_wishlish()
 
 
 
+
+void _b_config_logic_layer::on_btn_rm_order_clicked()
+{
+    int index = ui->combox_list_order->currentIndex();
+
+    if(index < 0 || index >= wish_list.size()) {
+        ui->label_logic_if_log->setText("Invalid selection to remove.");
+        return;
+    }
+
+    lg_info_t removed_block = wish_list[index];
+
+    // Parse current board info JSON
+    QJsonParseError err;
+    QJsonDocument dev_doc = QJsonDocument::fromJson(board_info.h_limit.toUtf8(), &err);
+    QJsonDocument lg_doc = QJsonDocument::fromJson(removed_block.h_require.toUtf8(), &err);
+
+    if (err.error || !dev_doc.isObject() || !lg_doc.isObject()) {
+        ui->label_logic_if_log->setText("JSON parse error during removal.");
+        return;
+    }
+
+    QJsonObject dev_obj = dev_doc.object();
+    QJsonObject lg_obj = lg_doc.object();
+
+    // Restore hardware slots by reverting requirement
+    for (auto it = lg_obj.begin(); it != lg_obj.end(); ++it) {
+        QString type = it.key();
+        int released = it.value().toObject().value("n_order").toInt();
+
+        if (dev_obj.contains(type)) {
+            QJsonObject dev_hw = dev_obj[type].toObject();
+            int s_id = dev_hw["s_id"].toInt();
+            dev_hw["s_id"] = s_id - released;
+            dev_obj[type] = dev_hw;
+        }
+    }
+
+    // Update JSON string
+    board_info.h_limit = QString::fromUtf8(QJsonDocument(dev_obj).toJson(QJsonDocument::Compact));
+
+    // Remove from wishlist and update UI
+    wish_list.removeAt(index);
+    ui->combox_list_order->removeItem(index);
+
+    ui->label_logic_if_log->setText(QString("Removed [%1] from order list.").arg(removed_block.lg_desc));
+}
+
+
+
+
+
+
+// update http file json to esp32
+//#define HTTP_MEDIA_TYPE_JSON          "application/json"
+//#define HTTP_MEDIA_TYPE_PLAIN_TEXT    "text/plain"
+//#define HTTP_PATH_POST_FILE_CONFIG_LOGIC_BLOCK "/post_file_config_lgb"
+/*
+ * - Copy order list to another list, Re-arrange list by code name (sort)
+ * - Copy board current inform
+ * - have a check point  = NULL to check current logic block order code
+ * - Create JSON config:
+ *       + order logic block code, order id (because maybe repeat)
+ *          + order id = 0
+ *              + if order id != check point , order id ++
+ *              + else keep order id
+ *       + list hardware order recalculate by current hard ware limit
+ *          + get board hardware current s_id -> hardware order e_id =  s_id - 1
+ *          + success then  get hardware order s_id = e_id - hardware require
+ *          + update board hardware current s_id -= hardware require
+ *
+ * - Hide this window
+ * - New window open with param is : JSON config string
+ *      + Window has a widget has ability display render image
+ *          + render A form image (time, board infor, block info) can export in the future
+ *          + user can re check the order config
+ *      + Window has a button start send to board
+ *          + http post "/post_file_config_lgb"
+*/
+void _b_config_logic_layer::on_btn_start_cf_clicked()
+{
+    // 0. Check empty
+    if (this->wish_list.isEmpty()) {
+        ui->label_log_cf_start->setText("Wishlist Empty");
+        QTimer::singleShot(3000, this, [this]() {
+            if (ui->label_log_cf_start->text() == "Wishlist Empty")
+                ui->label_log_cf_start->setText("...");
+        });
+        return;
+    }
+
+    // 1. Sao chép và giữ trạng thái board ban đầu
+    QList<lg_info_t> lg_sorted_list = this->wish_list;
+    board_info_t board_info_origin = this->board_info;
+
+    // 2. Sắp xếp logic block theo lg_code
+    std::sort(lg_sorted_list.begin(), lg_sorted_list.end(),
+              [](const lg_info_t& a, const lg_info_t& b)
+              {
+                  return a.lg_code < b.lg_code;
+              });
+
+
+    // 2.1. Parse board_info.h_limit
+    QJsonParseError board_err;
+    QJsonDocument board_doc = QJsonDocument::fromJson(board_info_origin.h_limit.toUtf8(), &board_err);
+    if (board_err.error != QJsonParseError::NoError || !board_doc.isObject()) {
+        ui->label_log_cf_start->setText("Parse error in board h_limit JSON");
+        return;
+    }
+
+    QJsonObject board_obj = board_doc.object();
+
+
+
+    // 3. Bắt đầu tạo cấu hình JSON
+    QJsonArray json_a;
+    int i = 0;
+    while (i < lg_sorted_list.size()) {
+        QString current_lg_code = lg_sorted_list[i].lg_code;
+
+        // 3.1. Đếm số lần xuất hiện liên tiếp của logic block này
+        int repeat_count = 0;
+        while (i < lg_sorted_list.size() && lg_sorted_list[i].lg_code == current_lg_code) {
+            ++repeat_count;
+            ++i;
+        }
+
+        // 3.2. Lặp giảm dần từ repeat_count - 1 về 0
+        for (int order_index = repeat_count - 1; order_index >= 0; --order_index) {
+            QJsonObject json_lb;
+            json_lb["lc"] = current_lg_code;
+            json_lb["no"] = order_index;
+
+            // 3.3. Parse yêu cầu phần cứng
+            QJsonParseError lg_err;
+            QJsonDocument req_doc = QJsonDocument::fromJson(lg_sorted_list[i+order_index-repeat_count].h_require.toUtf8(), &lg_err);
+            if (lg_err.error != QJsonParseError::NoError || !req_doc.isObject()) {
+                ui->label_log_cf_start->setText("Parse error in logic require JSON");
+                return;
+            }
+            QJsonObject req_obj = req_doc.object();
+
+            QJsonObject json_cf_obj;
+
+            // 3.4. Xử lý từng loại phần cứng cần thiết
+            for (auto it = req_obj.begin(); it != req_obj.end(); ++it) {
+                QString hw_type = it.key();
+                int needed = it.value().toObject().value("n_order").toInt();
+
+                if (!board_obj.contains(hw_type))
+                {
+                    ui->label_log_cf_start->setText(QString("Missing hardware type: %1").arg(hw_type));
+                    return;
+                }
+
+                QJsonObject hw_obj = board_obj[hw_type].toObject();
+                int current_s_id = hw_obj["s_id"].toInt();  // đây là vị trí tiếp theo
+
+                int level = repeat_count - 1 - order_index;
+                int offset = level * needed;
+                int e_id = current_s_id - 1 - offset;
+                int s_id = e_id - needed + 1;
+
+                if (s_id < 0) {
+                    ui->label_log_cf_start->setText(QString("HW %1 out of resource").arg(hw_type));
+                    return;
+                }
+
+                // Gán vào phần cấu hình của logic block này
+                QJsonObject hw_range;
+                hw_range["s_id"] = s_id;
+                hw_range["e_id"] = e_id;
+                json_cf_obj[hw_type] = hw_range;
+
+                // Nếu đang ở order_index == 0 (cuối cùng của block này), cập nhật board
+                if (order_index == 0) {
+                    hw_obj["s_id"] = s_id;
+                    board_obj[hw_type] = hw_obj;
+                }
+            }
+
+            json_lb["cf"] = json_cf_obj;
+            json_a.append(json_lb);
+        }
+
+
+        // 3.5. Go to next logic block group
+    }
+
+    // 3.6. Sau khi xử lý xong, cập nhật lại board_info_origin.h_limit
+    QJsonDocument updated_board_doc(board_obj);
+    board_info_origin.h_limit = QString::fromUtf8(updated_board_doc.toJson(QJsonDocument::Compact));
+
+
+
+    // 4. Kết thúc, tạo document JSON cuối cùng
+    QJsonDocument final_doc(json_a);
+    QString final_json_str = final_doc.toJson(QJsonDocument::Compact);
+    qDebug() << "Generated config JSON:\n" << final_json_str;
+
+    ui->label_log_cf_start->setText("Created configuration OK!");
+
+
+    // Hide this window
+    // create new preview and input :
+    //  + this pointer
+    //  + struct board_info_origin
+    //  + JSON config minimum requirements for esp32
+
+    _b__preview_and_config* preview_page = new _b__preview_and_config(
+        board_info_origin,final_json_str, this);// << no set parent because when current window hide
+                            // preview page will hide
+
+    // connect signal auto re show this page when close preview page
+    QObject::connect(preview_page, SIGNAL(preview_page_closed()),
+                     this, SLOT(try_show_this_page_if_hide()));
+
+    // hide this
+    this->hide();
+    preview_page->show();
+}
+
+
+// try show this window after preview page close
+void _b_config_logic_layer::try_show_this_page_if_hide()
+{
+    // show
+    this->show();
+}

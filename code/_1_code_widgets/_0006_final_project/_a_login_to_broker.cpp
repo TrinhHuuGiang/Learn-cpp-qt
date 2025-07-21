@@ -141,8 +141,17 @@ _a_login_to_broker::_a_login_to_broker(QWidget *parent)
 
 
 
-    // clean tab widget
-    clear_UI_tabWidget();
+    // clean tab widget, set tab default West (<-)
+    // clear_UI_tabWidget();
+    ui->tabWidget_UI_controller->setTabPosition(QTabWidget::West);
+
+
+    for(int i = 0; i<10; i++)
+    {
+    ui->tabWidget_UI_controller->addTab(new QWidget(), "new tab");
+    }
+
+    ui->tabWidget_UI_controller->setStyleSheet(TAB_SCROLL_BUTTON_STYLE);
 
 
     //========================== Limit input ================

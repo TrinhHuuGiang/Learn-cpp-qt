@@ -84,7 +84,10 @@ void disconnectFromSQLiteDB(const QString &unique_connect)
  * Support code
 ======================================================= */
 static QDateTime getAppBuildDateTime() {
-    QString dateStr = QString(APP_COMPILE_DATE) + " " + QString(APP_COMPILE_TIME);
+    QString dateStr = APP_VERSION;
+    dateStr = dateStr.simplified();
+    // :) __DATE__ and __TIME__ return a string but have " " at start and end
+    // and QDateTime can't parse this format -> simplified
     return QDateTime::fromString(dateStr, "MMM d yyyy HH:mm:ss");
 }
 
@@ -129,9 +132,6 @@ static bool renew_local_db_when_version_update(const QString& db_rsrc_path, cons
             return false;
         }
     }
-
-
-
 
 
     // if exist file version, check version

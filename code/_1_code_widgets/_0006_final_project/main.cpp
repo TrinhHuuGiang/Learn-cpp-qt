@@ -63,6 +63,7 @@
 
 #include "_a_login_to_broker.h"
 #include "_b_config_logic_layer.h"
+#include "_b_config_logic_layer_2.h"
 #include "_c_update_mqtt_info.h"
 #include "_d_update_wifi_info.h"
 
@@ -93,11 +94,9 @@ int main(int argc, char *argv[])
                     // Do not use this function in conjunction with Qt Style Sheets.
 
 
-    // set default scroll bar size / setStyleSheet is safe if not set font style
-    // scroll bar style
+    // set default setStyleSheet is safe if not set font style
+    // scroll bar style (QScrollArea Widget)
     a.setStyleSheet(SCROLLBAR_SIZE_DESIGN);
-
-
 
 
 
@@ -112,8 +111,8 @@ int main(int argc, char *argv[])
     */
 
     // show menuconfig window
-    _1_menuconfig* w_menu = new _1_menuconfig(nullptr);
-    w_menu->show();
+    // _1_menuconfig* w_menu = new _1_menuconfig(nullptr);
+    // w_menu->show();
 
 
     // // // login to mqtt server
@@ -123,8 +122,17 @@ int main(int argc, char *argv[])
 
 
     //config board logic blocks
-    // _b_config_logic_layer w_config_lg_layer;
-    // w_config_lg_layer.show();
+    _b_config_logic_layer* w_config_lg_layer = new _b_config_logic_layer;
+    w_config_lg_layer->show();
+
+
+    //preview config before send
+    // board_info_t test_board_info_origin;
+    // QString test_final_json_str;
+    // _b__preview_and_config* w_preview_config_board =
+    //     new _b__preview_and_config(test_board_info_origin,test_final_json_str);
+    // w_preview_config_board->show();
+
 
 
     // // update mqtt inform

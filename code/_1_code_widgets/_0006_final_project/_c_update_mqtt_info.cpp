@@ -100,12 +100,17 @@ _c_update_mqtt_info::_c_update_mqtt_info(QWidget *parent)
 
 }
 
+
+
 _c_update_mqtt_info::~_c_update_mqtt_info()
 {
     delete ui;
 
     qDebug()<<this<<"- deleted window mqtt inform";
 }
+
+
+
 
 void _c_update_mqtt_info::on_btn_back_clicked()
 {

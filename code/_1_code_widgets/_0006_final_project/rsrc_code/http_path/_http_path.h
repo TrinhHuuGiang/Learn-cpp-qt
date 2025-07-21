@@ -21,8 +21,7 @@
 
 #define HTTP_PATH_GET_DEV_BOARD_TYPE           "/get_board_type"
 
-#define HTTP_PATH_GET_STATUS_READY_TO_CONFIG   "/read_get_config_lgb"
-#define HTTP_PATH_POST_FILE_CONFIG_LOGIC_BLOCK "/post_file_config_lgb"
+#define HTTP_PATH_POST_FILE_CONFIG_LOGIC_BLOCK "/post_json_config_lgb"
 
 
 

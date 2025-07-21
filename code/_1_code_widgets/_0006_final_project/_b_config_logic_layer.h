@@ -52,6 +52,7 @@
  * Definitions
 ============================================================= */
 #include <QWidget>
+#include <QObject>
 
 #include <QTimer>
 #include <QString>
@@ -59,8 +60,12 @@
 
 // File JSON
 #include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonArray>
+#include <QJsonObject> // When there is distinguishable content between objects,
+                    // and it has to short for string compare
+                    // using them as keys will make searching faster.
+#include <QJsonArray>  // When there is no unique key between objects,
+                    // or unique string verylog
+                    //using an array is better for browsing because it has an index for each object.
 
 
 // HTTP
@@ -77,8 +82,6 @@
 
 #include "rsrc_code/http_path/_http_path.h"
 
-
-
 typedef struct
 {
     QString b_code;
@@ -94,7 +97,7 @@ typedef struct
 } lg_info_t;
 
 
-
+#include "_b_config_logic_layer_2.h"
 
 
 
@@ -119,7 +122,7 @@ private:
 
     void try_get_list_logic_block_available();
 
-    int check_board_available_before_add_block_to_wishlish();
+    int check_board_available_before_add_block_to_wishlist();
 
 
 private slots:
@@ -127,9 +130,18 @@ private slots:
 
     void on_btn_back_clicked();//back to menu
 
-
-
     void on_btn_add_wishlist_clicked();
+
+    void on_combox_list_avail_currentIndexChanged(int index);
+
+    void on_combox_list_order_currentIndexChanged(int index);
+
+    void on_btn_rm_order_clicked();
+
+    void on_btn_start_cf_clicked();
+
+
+    void try_show_this_page_if_hide();
 
 private:
     Ui::_b_config_logic_layer *ui;

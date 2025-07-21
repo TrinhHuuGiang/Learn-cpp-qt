@@ -1,22 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
-    Copyright (C) 2025  Giang Trinh
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
- -->
-
 <ui version="4.0">
  <class>_c_update_mqtt_info</class>
  <widget class="QWidget" name="_c_update_mqtt_info">
@@ -49,8 +31,21 @@
         <height>435</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_5">
+      <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="1">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>235</width>
+           <height>22</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <spacer name="horizontalSpacer_4">
@@ -80,19 +75,6 @@
           </widget>
          </item>
         </layout>
-       </item>
-       <item row="1" column="1">
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>235</width>
-           <height>22</height>
-          </size>
-         </property>
-        </spacer>
        </item>
        <item row="2" column="0">
         <spacer name="horizontalSpacer">
@@ -177,7 +159,7 @@
                   <item>
                    <widget class="QLabel" name="label_unk_broker">
                     <property name="text">
-                     <string>Unknown broker ?</string>
+                     <string>...</string>
                     </property>
                    </widget>
                   </item>
@@ -280,20 +262,7 @@
          </property>
         </spacer>
        </item>
-       <item row="3" column="1">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>17</width>
-           <height>13</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="4" column="0" colspan="3">
+       <item row="3" column="0" colspan="3">
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QLabel" name="label_3">
@@ -317,6 +286,19 @@
           </widget>
          </item>
         </layout>
+       </item>
+       <item row="4" column="1">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>17</width>
+           <height>13</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>457</width>
-    <height>464</height>
+    <width>441</width>
+    <height>716</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,11 +27,68 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>420</width>
-        <height>476</height>
+        <width>421</width>
+        <height>696</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="1">
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_ic_back">
+           <property name="text">
+            <string>back icon</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btn_back">
+           <property name="text">
+            <string>Back to Menu</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="1">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>78</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="0">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>144</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
        <item row="2" column="1">
         <widget class="QFrame" name="frame_cf_lgb">
          <property name="styleSheet">
@@ -114,7 +171,7 @@
                <item row="0" column="1">
                 <widget class="QLabel" name="label_stat_select">
                  <property name="text">
-                  <string>Checking network...</string>
+                  <string>...</string>
                  </property>
                 </widget>
                </item>
@@ -153,6 +210,20 @@
                <item row="0" column="1">
                 <widget class="QComboBox" name="combox_list_order"/>
                </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_5">
+                 <property name="text">
+                  <string>rm icon</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QPushButton" name="btn_rm_order">
+                 <property name="text">
+                  <string>Remove</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </item>
              <item>
@@ -174,7 +245,7 @@
                <item row="0" column="1">
                 <widget class="QLabel" name="label_logic_if_log">
                  <property name="text">
-                  <string>empty</string>
+                  <string>...</string>
                  </property>
                 </widget>
                </item>
@@ -225,6 +296,19 @@
          </layout>
         </widget>
        </item>
+       <item row="2" column="2">
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>143</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
        <item row="3" column="0" colspan="3">
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
@@ -243,72 +327,15 @@
          </item>
         </layout>
        </item>
-       <item row="2" column="0">
-        <spacer name="horizontalSpacer">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>144</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="0" column="1">
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
-         <item>
-          <spacer name="horizontalSpacer_4">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_ic_back">
-           <property name="text">
-            <string>back icon</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="btn_back">
-           <property name="text">
-            <string>Back to Menu</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item row="2" column="2">
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>143</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="1" column="1">
-        <spacer name="verticalSpacer">
+       <item row="4" column="1">
+        <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
            <width>20</width>
-           <height>78</height>
+           <height>89</height>
           </size>
          </property>
         </spacer>

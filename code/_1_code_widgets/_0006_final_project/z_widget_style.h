@@ -93,6 +93,20 @@
     "
 
 
+// ========================== tab scroll button for QTabWidget
+/* Note: i was try fix size of toolbutton but can't change
+ *  width: 100px; \
+ *  height: 5px; \
+ *  qproperty-iconSize: 50px; \
+*/
+#define TAB_SCROLL_BUTTON_STYLE "\
+    QTabBar QToolButton { \
+    border: 1px solid black;\
+    }"
+
+
+
+
 /* ==========================================================================
  * APIs
 ========================================================================== */

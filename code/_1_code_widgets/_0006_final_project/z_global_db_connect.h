@@ -37,9 +37,7 @@
 #include <QStandardPaths> // available read write folder default OS create for this app
 
 // clean db each time update
-#define APP_COMPILE_DATE __DATE__
-#define APP_COMPILE_TIME __TIME__
-#define APP_VERSION APP_COMPILE_DATE " " APP_COMPILE_TIME
+#define APP_VERSION __DATE__ " " __TIME__
 
 #define APP_VERSION_SAVE_FILE_PATH   "/verison.old"
 

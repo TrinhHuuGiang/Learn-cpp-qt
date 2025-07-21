@@ -19,6 +19,9 @@
         <file>rsrc/Icon/feather/tool.svg</file>
         <file>rsrc/Icon/feather/list.svg</file>
         <file>rsrc/Icon/feather/settings.svg</file>
+        <file>rsrc/Icon/feather/chevrons-down.svg</file>
+        <file>rsrc/Icon/feather/x-square.svg</file>
+        <file>rsrc/Icon/feather/send.svg</file>
     </qresource>
     <qresource prefix="/database">
         <file>rsrc/Database/dev_board_designed.db</file>

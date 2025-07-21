@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>465</width>
-    <height>467</height>
+    <width>454</width>
+    <height>597</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,12 +27,25 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>445</width>
-        <height>447</height>
+        <width>434</width>
+        <height>577</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="1">
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>39</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="1">
         <layout class="QHBoxLayout" name="horizontalLayout_2">
          <item>
           <spacer name="horizontalSpacer_4">
@@ -62,19 +75,6 @@
           </widget>
          </item>
         </layout>
-       </item>
-       <item row="1" column="1">
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>39</height>
-          </size>
-         </property>
-        </spacer>
        </item>
        <item row="2" column="0">
         <spacer name="horizontalSpacer">
