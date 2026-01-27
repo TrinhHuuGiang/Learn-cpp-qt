@@ -28,3 +28,8 @@ This repository helps us quickly get familiar with Qt to write basic UI or conso
 
 ## Reference
 - Some ideas and techniques in this repository were inspired by the content from: [@VoidRealms](https://www.youtube.com/@VoidRealms)
+
+## Note:
+- Qt5.15 support api 21+ (Android 5+), https://www.qthub.com/static/doc/qt5/qtdoc/android.html#
+- Qt6.5 support api 26+ (Android 8+), https://doc.qt.io/qt-6.5/supported-platforms.html
+- Qt6.8 support api 28+ (Android 9+)
