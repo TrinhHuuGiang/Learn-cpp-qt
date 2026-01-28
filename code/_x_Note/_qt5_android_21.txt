@@ -1,0 +1,6 @@
+"D:\_EXE_\Qt\Installtion\5.15.2\android\bin\androiddeployqt.exe" ^
+--input "D:\_Code_\_github_project\Learn-cpp-qt\code\_1_code_widgets\_0006_final_project\build\Qt_5_15_2_for_Android_Multi_Abi-Release\android_deployment_settings.json" ^
+--output "D:\_Code_\_github_project\Learn-cpp-qt\code\_1_code_widgets\_0006_final_project\build\Qt_5_15_2_for_Android_Multi_Abi-Release\android-build" ^
+--android-platform android-31 ^
+--jdk "D:\_EXE_\Qt\download_extended_program\OpenJDK11U" ^
+-- verbose

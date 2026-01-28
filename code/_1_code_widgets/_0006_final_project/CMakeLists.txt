@@ -16,9 +16,6 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets
 
 set(PROJECT_SOURCES
         main.cpp
-
-
-
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -45,28 +42,84 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         rsrc_code/http_path/_http_path.h
         _b_config_logic_layer_2.h _b_config_logic_layer_2.cpp _b_config_logic_layer_2.ui
 
-
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET _0006_final_project APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
+
 else()
-    if(ANDROID)
+
+    if(ANDROID) # Configure for Qt5 on Android
+        find_package(Qt5 REQUIRED COMPONENTS AndroidExtras)
+
+        # set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+        set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android" CACHE INTERNAL "")
+
         add_library(_0006_final_project SHARED
-            ${PROJECT_SOURCES}
+                ${PROJECT_SOURCES}
+            rsc_f.qrc
+            _1_menuconfig.h _1_menuconfig.cpp _1_menuconfig.ui
+            z_widget_style.h
+            z_widget_style.cpp
+            _a_login_to_broker.h _a_login_to_broker.cpp _a_login_to_broker.ui
+            _b_config_logic_layer.h _b_config_logic_layer.cpp _b_config_logic_layer.ui
+            _c_update_mqtt_info.h _c_update_mqtt_info.cpp _c_update_mqtt_info.ui
+            _d_update_wifi_info.h _d_update_wifi_info.cpp _d_update_wifi_info.ui
+            rsrc_code/mqtt_topic/_002_B0_mqtt_topic.h
+            rsrc_code/mqtt_topic/_001_B0_mqtt_topic.h
+            z_global_db_connect.h
+            z_global_db_connect.cpp
+            rsrc_code/mqtt_topic/__general_handshake_topic.h
+            _a_ltb_logic_block/_a_ltb_000_logic_base_ui.h _a_ltb_logic_block/_a_ltb_000_logic_base_ui.cpp
+            _a_ltb_logic_block/_a_ltb_001_logic_base_map.h _a_ltb_logic_block/_a_ltb_001_logic_base_map.cpp
+            _a_ltb_logic_block/_a_ltb_link_B0_DF_000_logic_bat_check.h _a_ltb_logic_block/_a_ltb_link_B0_DF_000_logic_bat_check.cpp
+            _a_ltb_logic_block/_a_ltb_link_B0_DF_001_logic_au_test.h _a_ltb_logic_block/_a_ltb_link_B0_DF_001_logic_au_test.cpp
+            rsrc_code/http_path/_http_path.h
+            _b_config_logic_layer_2.h _b_config_logic_layer_2.cpp _b_config_logic_layer_2.ui
+
         )
+
+        target_link_libraries(_0006_final_project PRIVATE Qt5::AndroidExtras)
+        # add_dependencies(apk _0006_final_project)
+
+
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
+
+    else() # Configure for Qt5 on Window (executable = exe)
         add_executable(_0006_final_project
             ${PROJECT_SOURCES}
+            rsc_f.qrc
+            _1_menuconfig.h _1_menuconfig.cpp _1_menuconfig.ui
+            z_widget_style.h
+            z_widget_style.cpp
+            _a_login_to_broker.h _a_login_to_broker.cpp _a_login_to_broker.ui
+            _b_config_logic_layer.h _b_config_logic_layer.cpp _b_config_logic_layer.ui
+            _c_update_mqtt_info.h _c_update_mqtt_info.cpp _c_update_mqtt_info.ui
+            _d_update_wifi_info.h _d_update_wifi_info.cpp _d_update_wifi_info.ui
+            rsrc_code/mqtt_topic/_002_B0_mqtt_topic.h
+            rsrc_code/mqtt_topic/_001_B0_mqtt_topic.h
+            z_global_db_connect.h
+            z_global_db_connect.cpp
+            rsrc_code/mqtt_topic/__general_handshake_topic.h
+            _a_ltb_logic_block/_a_ltb_000_logic_base_ui.h _a_ltb_logic_block/_a_ltb_000_logic_base_ui.cpp
+            _a_ltb_logic_block/_a_ltb_001_logic_base_map.h _a_ltb_logic_block/_a_ltb_001_logic_base_map.cpp
+            _a_ltb_logic_block/_a_ltb_link_B0_DF_000_logic_bat_check.h _a_ltb_logic_block/_a_ltb_link_B0_DF_000_logic_bat_check.cpp
+            _a_ltb_logic_block/_a_ltb_link_B0_DF_001_logic_au_test.h _a_ltb_logic_block/_a_ltb_link_B0_DF_001_logic_au_test.cpp
+            rsrc_code/http_path/_http_path.h
+            _b_config_logic_layer_2.h _b_config_logic_layer_2.cpp _b_config_logic_layer_2.ui
+
+
         )
     endif()
 endif()
 
 target_link_libraries(_0006_final_project PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
-                        Qt6::Svg  Qt6::Mqtt Qt6::Network  Qt6::Sql)#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                        Qt${QT_VERSION_MAJOR}::Svg
+                        Qt${QT_VERSION_MAJOR}::Mqtt
+                        Qt${QT_VERSION_MAJOR}::Network
+                        Qt${QT_VERSION_MAJOR}::Sql)#<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 # Add library SSL 1.1 / 3 for android // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

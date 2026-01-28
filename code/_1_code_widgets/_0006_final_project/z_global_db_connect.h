@@ -9,6 +9,9 @@
 // c
 #include <stdint.h>
 
+// Qt
+#include <QDebug>
+
 // SQLite
 #include <QSqlDatabase>
 #include <QSqlQuery>
