@@ -1,0 +1,28 @@
+Qt5.15.2 setup qtmqtt
++> web: https://code.qt.io/cgit/qt/qtmqtt.git/?h=5.13.2
++> git clone git://code.qt.io/qt/qtmqtt.git
++> git checkout v5.15.2
++> download perl for window: strawberry perl
+https://strawberryperl.com/
+
+Cài môi trường trỏ đúng về phiên
+bản mingw dành cho qt5.15.2 đã tải từ
+qt maintain tools: (bằng powershell)
++> $env:PATH = "D:\_EXE_\Qt\Installtion\Tools\mingw810_64\bin;D:\_EXE_\Qt\Installtion\5.15.2\mingw81_64\bin;" + $env:PATH
+
+Lưu ý: nếu là android hãy tìm đến mục 
+android, ở trên đang cho window
+Lưu ý: với android, kiểm tra đường dẫn NDK cho phiên bản 5.15.2 ở trong QtCreator
++> $env:PATH = "D:\_EXE_\Qt\Installtion\Tools\mingw810_64\bin;D:\_EXE_\Qt\Installtion\5.15.2\android\bin;" + $env:PATH
++> $env:ANDROID_NDK_ROOT = "D:\_EXE_\Qt\download_extended_program\SDK\ndk\21.3.6528147"
+
+
+Biên dịch
++> qmake -r
++> mingw32-make
+
+Không có lỗi là thành công
+Cài đặt
++> mingw32-make install
+
+Xong
