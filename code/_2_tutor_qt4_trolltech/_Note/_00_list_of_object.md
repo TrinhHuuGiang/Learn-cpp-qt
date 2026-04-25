@@ -29,7 +29,8 @@ Index:
 ---
 
 ### Widget container
-- **QWidget**: `mt` setWindowTitle(), setLayout()
+- **QWidget**: `mt` setWindowTitle(), setLayout(), QWidget::setTabOrder()
+    - **QMainWindow**, **QDialog** are inherited
 - **QMainWindow**: `mt` setWindowTitle(), setLayout()
 - **QDialog**: `mt` setWindowTitle(), setLayout(), setFixedHeight(), sizeHint()
 

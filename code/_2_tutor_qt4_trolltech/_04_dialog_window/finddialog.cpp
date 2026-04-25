@@ -42,6 +42,8 @@ FindDialog::FindDialog(QWidget *parent)
 
     setWindowTitle(tr("Find"));
     setFixedHeight(sizeHint().height());
+
+    // QWidget::setTabOrder();
 }
 
 FindDialog::~FindDialog()
