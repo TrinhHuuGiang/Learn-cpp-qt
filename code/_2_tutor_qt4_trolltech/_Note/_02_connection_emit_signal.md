@@ -1,14 +1,6 @@
 ## Content
 - [Make connection with user actions](#make-connection)
 
-## What news:
-- management object:
-    - QApplication: slot quit()
-- widget:
-    - QPushButton: signal clicked()
-- Connection:
-    - QObject: method connect(), macros SIGNAL() and SLOT()
-
 ## Make connection
 ```cpp
 001 #include <QApplication>

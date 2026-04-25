@@ -16,17 +16,6 @@
 - [Risk of infinite loop when using signal-slot](#risk-of-infinite-loop-when-using-signal-slot)
 
 
-## What news:
-- widget:
-    - QSlider:  method setRange(), signal valueChanged(), slot setValue()
-    - QSpinBox: method setRange(), signal valueChanged(), slot setValue()
-- widget container (need a widget layout):
-    - QWidget:  method setWindowTitle(), setLayout()
-    - Others: QMainWindow, QDialog
-- widget layout (it is widgets layout, not a widget, can't show):
-    - QHBoxLayout:  method addWidget()
-    - Others: QVBoxLayout, QGridLayout
-
 ## Layout application widgets
 ```cpp
     001 #include <QApplication>

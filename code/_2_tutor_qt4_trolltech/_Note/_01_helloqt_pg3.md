@@ -5,12 +5,6 @@
     their method.
     - Build application by Qt Creator 6.5
 
-## What news:
-- management object:
-    - QApplication: method exect()
-- widget:
-    - QLabel: method show()
-
 ## Hello Qt
 ```cpp
 001 #include <QApplication>
