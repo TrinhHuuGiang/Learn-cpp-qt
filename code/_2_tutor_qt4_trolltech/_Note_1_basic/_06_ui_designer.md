@@ -4,6 +4,9 @@
 - [Layout Widgets after take some necessary](#layout-widgets-after-take-some-necessary)
     - [Adjust UI layout](#adjust-layout)
     - [Add UI into main code](#add-ui-into-main-code)
+- Preview UI page: 
+    - Design mode -> Tools -> Form Editor -> Preview
+    
 ---
 
 ## Create UI design file
@@ -13,7 +16,7 @@
     - Note that after set above it design as UI for `QDialog` only
     - If want change another form as `Widget` or `MainWindow`, it should recreate another template
     then copy from UI after design will be described below.
-- **Rename** `.ui` file will be created, example `dialog.ui`
+- **Rename** `.ui` file will be created, example `gotocelldialog.ui`
 
 ---
 
@@ -52,6 +55,7 @@ Example **Cell Location**:
 
 ### Adjust layout
 
+#### Bind label with it buddy to make focus shortcut
 After adjust properties for each widget's, now start **bind** some widget with others:
 
 1. `label` now just display text "&Cell Location:", because it not set a **buddy** for shortcut focus.
@@ -61,6 +65,8 @@ After adjust properties for each widget's, now start **bind** some widget with o
 2. Then return `Edit Widgets` mode at `Edit` like select `Edit Buddies` above.
 
 ---
+
+#### Group, sort widget's with some layouts
 
 The button, label, line edit now seem messy, need groups and sorts them with some **layout**.
 
@@ -72,8 +78,16 @@ Sort it left to right: label - lineEdit
 1. Drag a **Horizontal Spacer** in *Widget Box* and created widgets `okButton`, `cancelButton` 
 into *Horizontal Layout above*.  
 Sort it left to right: Spacer - okButton - cancelButton
-1. Last one, right click on back ground **dialog**, select `Lay out`
+1. Last one, right click on background **dialog**, select `Lay out`
     - Select `Lay Out Vertically` to set main lay out for **dialog** is vertial.
+
+---
+
+#### Edit Tab order / focus when push `Tabs`
+Continue go to **Edit** -> **Edit Tab Order** 
+
+- Then right click on background of **Dialog** -> **Tab Order List** -> Sort this list
+    - or click number on each label to change the order
 
 
 ---
@@ -87,7 +101,7 @@ In main code, simple add library `QDialog` to create a **QDialog object** implem
 #include <QApplication>
 
 #include <QDialog>
-#include "ui_dialog.h"
+#include "ui_gotocelldialog.h"
 
 
 int main(int argc, char *argv[])
@@ -105,11 +119,11 @@ int main(int argc, char *argv[])
 
 ```
 
-1. Library `ui_dialog.h` and it ui source code, follow name of ui file `dialog.h` will be created
+1. Library `ui_gotocelldialog.h` and it ui source code, follow name of ui file `gotocelldialog.ui` will be created
 by `qmake` tools while build app from Qt Creator.
 2. **Ui::GoToCellDialog** where the `GoToCellDialog` class name was decided by **objectName**
 field of **Dialog window** in `Properties Editor`. See [Painting Widgets on window](#painting-widgets-on-window-of-ui-file) above.
-    - Another method is after **Build** success `ui_dialog.h` will exist in **build/Debug_or_release/ui_dialog.h**. It sometime seem like that:
+    - Another method is after **Build** success `ui_gotocelldialog.h` will exist in **build/Debug_or_release/ui_gotocelldialog.h**. It sometime seem like that:
     ```cpp
         /********************************************************************************
         ** Form generated from reading UI file 'dialog.ui'
@@ -119,8 +133,8 @@ field of **Dialog window** in `Properties Editor`. See [Painting Widgets on wind
         ** WARNING! All changes made in this file will be lost when recompiling UI file!
         ********************************************************************************/
 
-        #ifndef UI_DIALOG_H
-        #define UI_DIALOG_H
+        #ifndef UI_GOTOCELLDIALOG_H
+        #define UI_GOTOCELLDIALOG_H
 
         #include <QtCore/QVariant>
             ... short cut
@@ -139,5 +153,5 @@ field of **Dialog window** in `Properties Editor`. See [Painting Widgets on wind
 
         QT_END_NAMESPACE
 
-        #endif // UI_DIALOG_H
+        #endif // UI_GOTOCELLDIALOG_H
     ```
