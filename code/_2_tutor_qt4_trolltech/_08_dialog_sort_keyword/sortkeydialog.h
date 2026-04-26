@@ -2,6 +2,7 @@
 #define SORTKEYDIALOG_H
 
 #include <QDialog>
+#include <QChar>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -16,6 +17,8 @@ class SortKeyDialog : public QDialog
 public:
     SortKeyDialog(QWidget *parent = nullptr);
     ~SortKeyDialog();
+
+    void setColumnRange(QChar first, QChar last);
 
 private:
     Ui::SortKeyDialog *ui;

@@ -10,6 +10,7 @@ extended appearances.*
 
 ## Content
 - [Layout Widgets on Dialog](#create-source-code-for-derived-class-base-on-qdialog)
+- [Different from using `setFixedHeight/Width` with `layout()`->`setSizeConstraint()`](#different-from-using-setfixedheightwidth-with-layout-setsizeconstraint)
 
 ---
 
@@ -38,4 +39,17 @@ Some note when layout:
     - slot **setVisible(bool)** only find in **Configuration Connection** if signal
     want connects to is has **(bool,...)** parameters
 
+--- 
+
+### Different from using `setFixedHeight/Width` with `layout()`->`setSizeConstraint()`
+Both of them affect on **Widget** size, and make user can't resize. But has sone different.
+
 ---
+
+1. The method `setFixedHeight` or `setFixedWidth` will fix size of the **Widget**.
+    - That mean widget neverchange size if any **child Widget** change size.
+    - ![setFixedHeight](./rss/_08_setFixedHeight.png)
+
+1. The method `layout()`->`setSizeConstraint()` adjust and fix size for layout inside
+**Widget**, that mean the **Widget** must resize follow it.
+- ![setFixedHeight](./rss/_08_setSizeConstraint.png)

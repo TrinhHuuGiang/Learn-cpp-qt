@@ -35,6 +35,7 @@ Index:
 - **QWidget**: 
     - `mt` setWindowTitle(), setLayout(), QWidget::setTabOrder()
     - `mt` setVisible(), show(), showFullScreen(), showMaximized(), showMinimized(), showNormal()
+    - `mt` setSizeConstraint()
     - **QMainWindow**, **QDialog** are inherited
 - **QMainWindow**: `mt` setWindowTitle(), setLayout()
 - **QDialog**: 
@@ -55,13 +56,15 @@ Index:
 - **QLabel**: `mt` show()
 - **QLineEdit**: `mt` hasAcceptableInput(), `sn` textChanged()
 
-- **QPushButton**: `mt` setDefault(), setEnabled(), `sn` clicked()
+- **QPushButton**: 
+    - `mt` setDefault(), setEnabled(), `sn` clicked()
+    - `mt` setCheckable(), setChecked() `sn` toggled()
 - **QCheckBox**: `mt` isChecked()
 
 - **QSlider**:  `mt` setRange(), `sn` valueChanged(), `sl` setValue()
 - **QSpinBox**: `mt` setRange(), `sn` valueChanged(), `s;` setValue()
 
-- **QComboBox**: `sl` setVisible()
+- **QComboBox**: `mt` clear(), addItem(), `sl` setVisible()
 
 ---
 
@@ -75,6 +78,8 @@ Index:
 
 - **QRegularExpression** make regular exparession rule
 - **QRegularExpressionValidator** create a validator with input **QRegularExpression**
+
+- **QChar**
 
 ---
 

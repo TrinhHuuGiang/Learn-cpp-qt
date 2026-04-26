@@ -7,6 +7,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     SortKeyDialog w;
     // w.show();
-    w.showMinimized();
+    w.show();
     return a.exec();
 }
