@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>270</width>
+    <width>558</width>
     <height>413</height>
    </rect>
   </property>
@@ -244,6 +244,82 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>primaryColumnCombo</tabstop>
+  <tabstop>primaryOrderCombo</tabstop>
+  <tabstop>okButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+  <tabstop>moreButton</tabstop>
+  <tabstop>secondaryColumnCombo</tabstop>
+  <tabstop>secondaryOrderCombo</tabstop>
+  <tabstop>tertiaryColumnCombo</tabstop>
+  <tabstop>tertiaryOrderCombo</tabstop>
+ </tabstops>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SortKeyDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>538</x>
+     <y>17</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>538</x>
+     <y>81</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SortKeyDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>518</x>
+     <y>47</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>518</x>
+     <y>76</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moreButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>secondaryGroupBox</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>525</x>
+     <y>208</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>446</x>
+     <y>260</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moreButton</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>tertiaryGroupBox</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>540</x>
+     <y>195</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>463</x>
+     <y>339</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

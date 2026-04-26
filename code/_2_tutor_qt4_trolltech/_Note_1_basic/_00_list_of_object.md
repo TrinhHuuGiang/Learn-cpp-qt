@@ -32,7 +32,9 @@ Index:
 ---
 
 ### Widget container
-- **QWidget**: `mt` setWindowTitle(), setLayout(), QWidget::setTabOrder()
+- **QWidget**: 
+    - `mt` setWindowTitle(), setLayout(), QWidget::setTabOrder()
+    - `mt` setVisible(), show(), showFullScreen(), showMaximized(), showMinimized(), showNormal()
     - **QMainWindow**, **QDialog** are inherited
 - **QMainWindow**: `mt` setWindowTitle(), setLayout()
 - **QDialog**: 
@@ -52,10 +54,14 @@ Index:
 ### Widget
 - **QLabel**: `mt` show()
 - **QLineEdit**: `mt` hasAcceptableInput(), `sn` textChanged()
+
 - **QPushButton**: `mt` setDefault(), setEnabled(), `sn` clicked()
 - **QCheckBox**: `mt` isChecked()
+
 - **QSlider**:  `mt` setRange(), `sn` valueChanged(), `sl` setValue()
 - **QSpinBox**: `mt` setRange(), `sn` valueChanged(), `s;` setValue()
+
+- **QComboBox**: `sl` setVisible()
 
 ---
 

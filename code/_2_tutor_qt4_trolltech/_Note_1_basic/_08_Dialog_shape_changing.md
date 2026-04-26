@@ -1,100 +1,41 @@
-Continue after create [UI](./_06_ui_designer.md), dialog now just static,
-can't close when click *buttonCancel*, do nothing when type in *lineEdit* and
-click *button OK*.
+This section will creates a dialog has a toggle
+button that allows the user to switch between the dialog’s simple and extended
+appearances. 
 
-Need a derived class of `QDialog` with expand signal, slot and more method 
-to make them active.
+*The dialog is a Sort dialog in a spreadsheet application, where the user can
+select one or several columns to sort on. The dialog’s simple appearance allows
+the user to enter a single sort key, and its extended appearance provides for
+two extra sort keys. A More button lets the user switch between the simple and
+extended appearances.*
 
 ## Content
-- [Create source code for derived class with UI base on `QDialog`](#create-source-code-for-derived-class-base-on-qdialog)
+- [Layout Widgets on Dialog](#create-source-code-for-derived-class-base-on-qdialog)
 
 ---
 
-## Create source code for derived class base on `QDialog`
+## Layout Widgets on Dialog
 
-- **Right click** -> **Add new** -> **C/C++ Class** -> **C++ Class**  
-    - **Class name** set *GoToCellDialog*.
-    - **Base class** set *QObject*
-    ![new clase](./rss/_07_new_sourcecode.png)
+Follow step from:
+    - URL: [C++ GUI Programming with Qt 4 (1st Edition)](https://www-cs.ccny.cuny.edu/~wolberg/qt/books/C++-GUI-Programming-with-Qt-4-1st-ed.pdf)
+    - From Page: 30
 
-- Now project has `gotocelldialog.h` and `gotocelldialog.c` with
-*QObject template*.
-- Next in `gotocelldialog.h` change parent class `QObject` into `QDialog`
-    - Then add `ui_gotocelldialog.h` library generated from static UI `gotocelldialog.ui`, see [ui designer](./_06_ui_designer.md).
-        - Add ui `Ui::GoToCellDialog *ui` into source file as a class private member.
-    - header file:
-    ```cpp
-        #ifndef GOTOCELLDIALOG_H
-        #define GOTOCELLDIALOG_H
+---
 
-        #include <QDialog> // old <QObject>
-        #include "ui_gotocelldialog.h"
+Some note when layout:
+- Widget **QComboBox**:
+    - In UI `Design` page, it can be double click to open **Edit ComboBox** dialog.
+        - `+` `-` `^` `v` icon can be use to create and sort ComboBox items.
+- Widget can adjust it size on own child Widgets:
+    - right click -> **Adjust size**
 
-        class GoToCellDialog : public QDialog // old QObject
-        {
-            Q_OBJECT
-        public:
-            explicit GoToCellDialog(QDialog *parent = nullptr);
-            ~GoToCellDialog();  // add destructor help delete *ui memory
-        
-        private slots:
-            void on_lineEdit_textChanged();
-        private:
-            Ui::GoToCellDialog *ui;
+- Connection signal slot:
+    - Edit -> Edit Signals/Slots
+    - Click on **Widget** emit signal -> connect it to slot of destination **Widget**
+    - Then **Configuration Connection** window show to select connect signal-slot pair
+    - Click box *Show signals and slots inherited from Qwidget* if missing expected slot or signal.
 
-        signals:
-        };
+- **QGroupBox**:
+    - slot **setVisible(bool)** only find in **Configuration Connection** if signal
+    want connects to is has **(bool,...)** parameters
 
-        #endif // GOTOCELLDIALOG_H
-    ```
-    - source file:
-    ```cpp
-        #include "gotocelldialog.h"
-
-        #include <QRegularExpression>
-        #include <QRegularExpressionValidator>
-
-        GoToCellDialog::GoToCellDialog(QDialog *parent) // old QObject 
-            : QDialog{parent}, // old QObject           // Initializer list at pre-constructor 
-            , ui(new Ui::GoToCellDialog)        // - allocate/initial memory for ui
-        {
-            ui->setupUi(this);  // set designed ui for this derived Dialog class
-
-
-            // add validator with regular expression for lineEdit
-            QRegularExpression regExp("[A-Za-z][1-9][0-9]{0,2}");
-                // create validator, set this Dialog is parent
-                // then it auto delete after parent was deleted
-            ui->lineEdit->setValidator(new QRegularExpressionValidator(regExp, this));
-
-            // signal slot
-                // accept() and reject() both close the dialog
-                // but accept() set return QDialog::Accepted
-                // the reject() set return QDialog::Rejected 
-                // 
-                // The return useless if start QWidget with `show()` method
-                // But Dialog is window call from other MainWindow or Widget,
-                //      it sometime start by `exec()` method. 
-                //      This method return result corresponding to the above conditions
-            connect(ui->okButton, SIGNAL(clicked()), this, SLOT(accept()));
-            connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(reject()));
-
-            connect(ui->lineEdit, SIGNAL(textChanged(const QString &)),
-                this, SLOT(on_lineEdit_textChanged()));
-
-            // fix window size
-            this->setFixedHeight(this->sizeHint().height());
-            this->setFixedWidth(this->sizeHint().width());
-        }
-
-        // destructor
-        GoToCellDialog::~GoToCellDialog()
-        {
-            delete ui; ui = nullptr;
-        }
-
-        void GoToCellDialog::on_lineEdit_textChanged()
-        {
-            ui->okButton->setEnabled(ui->lineEdit->hasAcceptableInput());
-        }
-    ```
+---
