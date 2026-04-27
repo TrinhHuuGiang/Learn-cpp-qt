@@ -9,10 +9,11 @@ Index:
 - [QObject](#qobject)
 - [Widgets management object](#qt-widgets-management-object)
 - [Widget container](#widget-container)
+- [Widget viewer](#widget-viewer)
 - [Widget layout](#widget-layout)
 - [Widget](#widget)
-- [String format]()
-- [Qt namespace]()
+- [String format](#string-format)
+- [Qt namespace](#qt-namespace)
 ---
 
 ### QObject
@@ -41,6 +42,24 @@ Index:
 - **QDialog**: 
     - `mt` setWindowTitle(), setLayout(), setFixedHeight(), sizeHint()
     - `mt` exec(), show(), `sl` accept(), reject()
+
+---
+
+- **QFrame**
+- **QGroupBox**
+- **QToolBox**
+- **QTabWidget**
+
+- **QScrollArea**
+- **QStackedWidget**
+
+---
+
+### Widget viewer
+- **QListView**
+- **QTreeView**
+- **QTableView**
+
 
 ---
 
