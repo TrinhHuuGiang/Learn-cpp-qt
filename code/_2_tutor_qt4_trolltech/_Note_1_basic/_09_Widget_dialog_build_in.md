@@ -1,8 +1,14 @@
 This section will test the Qt built-in *Widgets* and some *Dialog classes*.
 
+## References   
+- [Qt application automatically exit after all window is hidden](https://stackoverflow.com/questions/55064660/qt-application-exit-automatically-when-mainwindow-is-hidden)
+
 ## Content
-- [Built in Widgets]()
-- [Built in Dialogs]()
+- [Built in Widgets](#build-in-widgets)
+- [Built in Dialogs](#built-in-dialogs)
+    - After click `X` window dialog, it will `close()` 
+    - QApplication `exit()` by default after all window hiden by `hide()` or `close()`(no window visibility)    
+        - It depend on default option **QApplication::quitOnLastWindowClosed(true);**
 
 ---
 
@@ -23,7 +29,20 @@ This section will test the Qt built-in *Widgets* and some *Dialog classes*.
 ![Button widgets](./rss/_09_widget_buttons.png)
 ![Button widgets](./rss/_09_widget_buttons_2.png)
 
-2. Container widget:
+---
+
+1. Display widget
+- **QLabel**, **TextBrowser**
+- **QLCDNumber**, **QProgressBar**
+- **QSpinBox**, **QDoubleSpinBox**
+- **QComboBox**
+- **QDateEdit**, **QTimeEdit**, **QDateTimeEdit**
+- **QScrollBar**, **Slider**, **QDial**
+- **QTextEdit**
+
+---
+
+1. Container widget:
 - **QFrame**
     - Same with **QWidget**, addition is has frame.
 - **QGroupBox**
@@ -33,16 +52,30 @@ This section will test the Qt built-in *Widgets* and some *Dialog classes*.
     - Only suitable if few page, icon ToolButton 
 - **QTabWidget**
     - Like **GroupBox** but multiple pages, tab bar change page
+    - Numbered from 0
 - **QScrollArea**
     - If mainpage bigger than parent Widget, appear scroll bar
 - **QStackedWidget**
     - Like **QTabWidget** but multiple pages without tab bar to change page
     - Using when custom button to change page or handle display page follow event
 
-- ****
-
 ---
+
+1. View widget
+- QListView
+- QTreeView
+- QTableView
 
 ---
 
 ## Built in Dialogs
+
+- **QColorDialog**
+- **QFontDialog**
+- **QFileDialog**
+- **QInputDialog**
+- **QProgressDialog**
+    - By default it will show after initialized.
+    - It take default 4second before show
+- **QMessageBox**
+- **QErrorMessage**

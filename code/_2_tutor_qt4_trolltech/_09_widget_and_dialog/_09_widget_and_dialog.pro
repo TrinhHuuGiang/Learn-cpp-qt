@@ -10,13 +10,16 @@ CONFIG += c++17
 
 SOURCES += \
     bi_widgets.cpp \
-    main.cpp
+    main.cpp \
+    showdialogtemplate.cpp
 
 HEADERS += \
-    bi_widgets.h
+    bi_widgets.h \
+    showdialogtemplate.h
 
 FORMS += \
-    bi_widgets.ui
+    bi_widgets.ui \
+    showdialogtemplate.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

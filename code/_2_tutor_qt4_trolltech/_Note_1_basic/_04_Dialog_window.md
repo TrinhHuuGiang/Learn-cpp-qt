@@ -4,6 +4,7 @@ Dialog box presents options and choices for user make their choices.
 - [Create a QDialog class](#create-a-qdialog-class): 
     - [Create QDialog class](#create-a-qdialog-class)
     - About QObject
+        - QObject can't copy
     - [About signal and slot](#qobject-signal-and-slot)
 
 ---

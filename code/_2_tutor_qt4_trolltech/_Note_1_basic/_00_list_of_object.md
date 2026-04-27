@@ -14,6 +14,8 @@ Index:
 - [Widget](#widget)
 - [String format](#string-format)
 - [Qt namespace](#qt-namespace)
+- [Some build-in Dialog](#some-build-in-dialog)
+
 ---
 
 ### QObject
@@ -28,14 +30,15 @@ Index:
 ---
 
 ###  Qt widgets management object
-- **QApplication**: `mt` exect(), `sl` quit()
+- **QApplication**: `mt` exect(), `sl` quit(), exit()
 
 ---
 
 ### Widget container
 - **QWidget**: 
     - `mt` setWindowTitle(), setLayout(), QWidget::setTabOrder()
-    - `mt` setVisible(), show(), showFullScreen(), showMaximized(), showMinimized(), showNormal()
+    - `mt` setVisible(), show(), hide(), close() 
+    - `mt` showFullScreen(), showMaximized(), showMinimized(), showNormal()
     - `mt` setSizeConstraint()
     - **QMainWindow**, **QDialog** are inherited
 - **QMainWindow**: `mt` setWindowTitle(), setLayout()
@@ -60,14 +63,12 @@ Index:
 - **QTreeView**
 - **QTableView**
 
-
 ---
 
 ### Widget layout
 - **QHBoxLayout** (left to right): `mt` addWidget(), addStretch()
 - **QVBoxLayout** (high to low): `mt` addWidget()
 - **QGridLayout** (coordinate): `mt` addWidget()
-
 
 ---
 
@@ -105,3 +106,14 @@ Index:
 ### Qt namespace
 - namespace `Qt`: contains miscellaneous identifiers used throughout the Qt library.
     - enum `Qt::CaseSensitivity`
+
+---
+
+### Some build-in Dialog
+- **QColorDialog**
+- **QFontDialog**
+- **QFileDialog**
+- **QInputDialog**
+- **QProgressDialog**
+- **QMessageBox**
+- **QErrorMessage**
