@@ -14,9 +14,12 @@
 
 // Qt lib
 #include <QString>
+#include <QLabel>
+
 #include <QAction>
 #include <QMenu>
 #include <QToolBar>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -47,10 +50,14 @@ private:
     void createMenus();
     void createContextMenu();
     void createToolBars();
-    // void createStatusBar();
+    void createStatusBar();
 
 private:
     Ui::MainWindow *ui;
+
+    // Label
+    QLabel* locationLabel;
+    QLabel* formulaLabel;
 
     // Action
     QAction *newAction;

@@ -204,6 +204,7 @@ Lint **031**:
 Line **036**-**037**:
 - The `QDialog` has method:
     - `setFixedHeight()` after set height, fix it can't resize.
+        - how to stop fixed size: https://forum.qt.io/topic/6604/solved-unfix-a-window-previously-fixed/3
     - `sizeHint()` automatically calculate suitable size, margin for QBbject's inside.
 
 ---

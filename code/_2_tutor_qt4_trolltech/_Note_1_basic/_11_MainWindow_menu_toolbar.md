@@ -24,7 +24,7 @@ Qt using the **actions** handle contexts inside them:
 
 - [Create toolbars, set it to toolbar areas](#create-toolbars-set-it-to-toolbar-areas)
 
-- [Setup conten to status bar]()
+- [Setup content to status bar]()
 
 - [Create main widget and set to the window central]()
 
@@ -37,6 +37,16 @@ The term **action** is an object has some properties:
     - Label can include **&** to add a buddy, this optional or using shortcut below.
 - A combined shortcut Key: example Ctrl + Shift + N 
 - A status line help, show when hover on
+    - Content will display on **status bar**
+    ```txt
+        From Qt Creator, click F1 on setStatusTip() method
+
+        statusTip : QString
+        This property holds the action's status tip
+        The status tip is displayed on all status bars provided by the action's top-level parent widget.
+        By default, this property contains an empty string.
+    ```
+
 - A **signal** when clicked can make connection.
 
 ---
@@ -124,4 +134,28 @@ editToolBar->addAction(findAction);
 editToolBar->addAction(goToCellAction);
 }
 
+```
+
+---
+
+## Setup content to status bar
+
+- 
+
+```cpp
+void MainWindow::createStatusBar()
+{
+locationLabel = new QLabel(" W999 ");
+locationLabel->setAlignment(Qt::AlignHCenter);
+locationLabel->setMinimumSize(locationLabel->sizeHint());
+formulaLabel = new QLabel;
+formulaLabel->setIndent(3);
+statusBar()->addWidget(locationLabel);
+statusBar()->addWidget(formulaLabel, 1);
+connect(spreadsheet, SIGNAL(currentCellChanged(int, int, int, int)),
+this, SLOT(updateStatusBar()));
+connect(spreadsheet, SIGNAL(modified()),
+this, SLOT(spreadsheetModified()));
+updateStatusBar();
+}
 ```

@@ -47,7 +47,7 @@ Index:
         - event->accept(); event->ignore();
 
 - **QMainWindow**: 
-    
+    - `mt` statusBar()->addWidget(), `sl` updateStatusBar()
 
 - **QDialog**: 
     - `mt` exec(), `sl` accept(), reject()
@@ -79,7 +79,7 @@ Index:
 ---
 
 ### Widget
-- **QLabel**: `mt` show()
+- **QLabel**: `mt` show(), setAlignment(), setIndent()
 - **QLineEdit**: `mt` hasAcceptableInput(), `sn` textChanged()
 
 - **QPushButton**: 
