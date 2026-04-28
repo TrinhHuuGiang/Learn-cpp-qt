@@ -19,7 +19,7 @@ Qt using the **actions** handle contexts inside them:
 
 - [Create a menu containing actions, set to menu bar](#create-a-menu-containing-actions)
     - the **menuBar()** of *QMainWindow*
-
+    - Fix android missing menubar: https://stackoverflow.com/questions/25261760/menubar-not-showing-for-simple-qmainwindow-code-qt-creator-mac-os
 - [Create a context menu when right click on QObject](#create-a-context-menu-when-right-click-on-qobject)
 
 - [Create toolbars, set it to toolbar areas](#create-toolbars-set-it-to-toolbar-areas)
