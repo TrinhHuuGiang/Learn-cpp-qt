@@ -36,12 +36,17 @@ Index:
 
 ### Widget container
 - **QWidget**: 
+    - **QMainWindow**, **QDialog** are inherited
     - `mt` setWindowTitle(), setLayout(), QWidget::setTabOrder()
-    - `mt` setVisible(), show(), hide(), close() 
+    - `sl` setVisible(), show(), hide(), close() 
     - `mt` showFullScreen(), showMaximized(), showMinimized(), showNormal()
     - `mt` setSizeConstraint()
-    - **QMainWindow**, **QDialog** are inherited
-- **QMainWindow**: `mt` setWindowTitle(), setLayout()
+    - `sl` *virtual* closeEvent(QCloseEvent *event)
+        - event->accept(); event->ignore();
+
+- **QMainWindow**: 
+    - `mt` setWindowTitle(), setLayout()
+    - `mt` setWindowIcon
 - **QDialog**: 
     - `mt` setWindowTitle(), setLayout(), setFixedHeight(), sizeHint()
     - `mt` exec(), show(), `sl` accept(), reject()

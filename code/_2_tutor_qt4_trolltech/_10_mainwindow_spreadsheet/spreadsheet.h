@@ -1,0 +1,108 @@
+#ifndef SPREADSHEET_H
+#define SPREADSHEET_H
+
+
+#include <QTableWidget>
+#include <QTableWidgetItem>
+
+class SpreadsheetCompare;
+class Cell;
+
+
+/**
+ * ==========================================================
+ * Spreadsheet class
+ * - QTableWidget: Displaying Cell of Spreedsheet application
+ * ==========================================================
+ */
+class Spreadsheet : public QTableWidget
+{
+    Q_OBJECT
+public:
+    explicit Spreadsheet(QWidget *parent = nullptr);
+
+    bool autoRecalculate() const { return autoRecalc; }
+    QString currentLocation() const;
+    QString currentFormula() const;
+    QTableWidgetSelectionRange selectedRange() const;
+    void clear();
+    bool readFile(const QString &fileName);
+    bool writeFile(const QString &fileName);
+    void sort(const SpreadsheetCompare &compare);
+
+public slots:
+    void cut();
+    void copy();
+    void paste();
+    void del();
+    void selectCurrentRow();
+    void selectCurrentColumn();
+    void recalculate();
+    void setAutoRecalculate(bool recalc);
+    void findNext(const QString &str, Qt::CaseSensitivity cs);
+    void findPrevious(const QString &str, Qt::CaseSensitivity cs);
+
+signals:
+    void modified();
+
+private slots:
+    void somethingChanged();
+
+private:
+    enum { MagicNumber = 0x7F51C883, RowCount = 999, ColumnCount = 26 };
+    Cell *cell(int row, int column) const;
+    QString text(int row, int column) const;
+    QString formula(int row, int column) const;
+    void setFormula(int row, int column, const QString &formula);
+    bool autoRecalc;
+};
+
+/**
+ * ==========================================================
+ * SpreadsheetCompare class
+ * - Comparation logic
+ * ==========================================================
+ */
+class SpreadsheetCompare
+{
+public:
+    bool operator()(const QStringList &row1,
+                    const QStringList &row2) const;
+    enum { KeyCount = 3 };
+    int keys[KeyCount];
+    bool ascending[KeyCount];
+};
+
+/**
+ * ==========================================================
+ * Cell class
+ * - QTableWidgetItem just raw data, not a Widget
+ *      (don't need Q_OBJECT)
+ * ==========================================================
+ */
+class Cell : public QTableWidgetItem
+{
+public:
+    Cell();
+    QTableWidgetItem *clone() const;
+    void setData(int role, const QVariant &value);
+    QVariant data(int role) const;
+    void setFormula(const QString &formula);
+    QString formula() const;
+    void setDirty();
+private:
+    QVariant value() const;
+    QVariant evalExpression(const QString &str, int &pos) const;
+    QVariant evalTerm(const QString &str, int &pos) const;
+    QVariant evalFactor(const QString &str, int &pos) const;
+    mutable QVariant cachedValue;
+    mutable bool cacheIsDirty;
+};
+
+
+
+
+
+
+
+#endif // SPREADSHEET_H

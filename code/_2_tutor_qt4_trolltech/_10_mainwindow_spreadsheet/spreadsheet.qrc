@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>image/camera.svg</file>
+    </qresource>
+</RCC>
