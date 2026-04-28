@@ -1,5 +1,14 @@
 <RCC>
-    <qresource prefix="/images">
-        <file>image/camera.svg</file>
+    <qresource prefix="/">
+        <file>images/feather_icon/camera.svg</file>
+        <file>images/trolltech_icon/copy.png</file>
+        <file>images/trolltech_icon/cut.png</file>
+        <file>images/trolltech_icon/find.png</file>
+        <file>images/trolltech_icon/gotocell.png</file>
+        <file>images/trolltech_icon/icon.png</file>
+        <file>images/trolltech_icon/new.png</file>
+        <file>images/trolltech_icon/open.png</file>
+        <file>images/trolltech_icon/paste.png</file>
+        <file>images/trolltech_icon/save.png</file>
     </qresource>
 </RCC>

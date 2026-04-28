@@ -38,18 +38,19 @@ Index:
 - **QWidget**: 
     - **QMainWindow**, **QDialog** are inherited
     - `mt` setWindowTitle(), setLayout(), QWidget::setTabOrder()
-    - `sl` setVisible(), show(), hide(), close() 
-    - `mt` showFullScreen(), showMaximized(), showMinimized(), showNormal()
+    - `mt` setWindowIcon
+    - `mt` setFixedHeight(), setFixedWidth(), sizeHint()->height(),...
     - `mt` setSizeConstraint()
-    - `sl` *virtual* closeEvent(QCloseEvent *event)
+    - `mt` showFullScreen(), showMaximized(), showMinimized(), showNormal()
+    - `sl` setVisible(), show(), hide(), close() 
+    - `mt` *virtual* closeEvent(QCloseEvent *event)
         - event->accept(); event->ignore();
 
 - **QMainWindow**: 
-    - `mt` setWindowTitle(), setLayout()
-    - `mt` setWindowIcon
+    
+
 - **QDialog**: 
-    - `mt` setWindowTitle(), setLayout(), setFixedHeight(), sizeHint()
-    - `mt` exec(), show(), `sl` accept(), reject()
+    - `mt` exec(), `sl` accept(), reject()
 
 ---
 
