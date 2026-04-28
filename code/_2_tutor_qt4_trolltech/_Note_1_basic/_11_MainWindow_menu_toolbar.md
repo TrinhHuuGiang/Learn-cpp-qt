@@ -17,8 +17,16 @@ Qt using the **actions** handle contexts inside them:
 - [Create action in MainWindow](#create-action-in-mainwindow)
     - the [New](#new-action) action.
 
-- [Create a menu containing actions]()
+- [Create a menu containing actions, set to menu bar](#create-a-menu-containing-actions)
     - the **menuBar()** of *QMainWindow*
+
+- [Create a context menu when right click on QObject](#create-a-context-menu-when-right-click-on-qobject)
+
+- [Create toolbars, set it to toolbar areas](#create-toolbars-set-it-to-toolbar-areas)
+
+- [Setup conten to status bar]()
+
+- [Create main widget and set to the window central]()
 
 ---
 
@@ -54,7 +62,7 @@ Properties:
 The *QMainWindow* has a **QMenuBar** can add some *QMenu Widget* inside it:
 - The *QMenuBar* can access by **menuBar()**, it automatically create 
 new *QMenuBar* at first call.
-    - *QMenuBar* can contain some *QMenu*
+    - *QMenuBar* can contain some *QMenu* by **addMenu()** method (notice ownership, `F1` on this method to see documentation in Qt Creator)
     - *QMenuBar* with method **addSeparator()** add a vertical line between each *QMenu*
 - The *QMenu* can contain some *Action*
 
@@ -73,3 +81,47 @@ fileMenu->addSeparator();
 fileMenu->addAction(exitAction);
 ```
 
+---
+
+## Create a context menu when right click on QObject
+*Any **Qt widget** can have a list of QActions associated with it. To provide a
+context menu for the application, we **add the desired actions** to the Spreadsheet
+widget and set that **widget’s context menu policy** to show a context menu with
+these actions. Context menus are invoked by **right-clicking** a widget or by
+pressing a platform-specific key.*
+
+```cpp
+void MainWindow::createContextMenu()
+{
+spreadsheet->addAction(cutAction);
+spreadsheet->addAction(copyAction);
+spreadsheet->addAction(pasteAction);
+spreadsheet->setContextMenuPolicy(Qt::ActionsContextMenu);
+}
+```
+
+--- 
+
+## Create toolbars, set it to toolbar areas
+
+- *QMainWindow* has a *Toolbars Areas*, that mean can include multiple **QToolBar**.
+- Each **QToolBar** can add action and separator.
+
+```cpp
+
+void MainWindow::createToolBars()
+{
+fileToolBar = addToolBar(tr("&File"));
+fileToolBar->addAction(newAction);
+fileToolBar->addAction(openAction);
+fileToolBar->addAction(saveAction);
+editToolBar = addToolBar(tr("&Edit"));
+editToolBar->addAction(cutAction);
+editToolBar->addAction(copyAction);
+editToolBar->addAction(pasteAction);
+editToolBar->addSeparator();
+editToolBar->addAction(findAction);
+editToolBar->addAction(goToCellAction);
+}
+
+```

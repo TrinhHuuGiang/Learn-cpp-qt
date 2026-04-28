@@ -28,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     createActions();
     createMenus();
+    createContextMenu();
+    createToolBars();
 }
 
 MainWindow::~MainWindow()
@@ -69,7 +71,7 @@ void MainWindow::createActions()
     // Action: new
     // Label and parent:
     newAction = new QAction(tr("&New"), this);
-    newAction->setIcon(QIcon(":/images/new.png"));
+    newAction->setIcon(QIcon(":/images/trolltech_icon/new.png"));
     // Shortcut
     newAction->setShortcut(tr("Ctrl+N"));
     // Status
@@ -90,4 +92,36 @@ void MainWindow::createMenus()
 
 }
 
+void MainWindow::createContextMenu()
+{
+    menuBar()->addAction(newAction);
+    menuBar()->setContextMenuPolicy(Qt::ActionsContextMenu);
+}
 
+
+void MainWindow::createToolBars()
+{
+    fileToolBar = addToolBar(tr("&File"));
+    fileToolBar->addAction(newAction);
+
+    editToolBar = addToolBar(tr("&Edit"));
+    editToolBar->addAction(newAction);
+    editToolBar->addSeparator();
+    editToolBar->addAction(newAction); // check no duplicate when display
+}
+
+// void MainWindow::createStatusBar()
+// {
+//     locationLabel = new QLabel(" W999 ");
+//     locationLabel->setAlignment(Qt::AlignHCenter);
+//     locationLabel->setMinimumSize(locationLabel->sizeHint());
+//     formulaLabel = new QLabel;
+//     formulaLabel->setIndent(3);
+//     statusBar()->addWidget(locationLabel);
+//     statusBar()->addWidget(formulaLabel, 1);
+//     connect(spreadsheet, SIGNAL(currentCellChanged(int, int, int, int)),
+//             this, SLOT(updateStatusBar()));
+//     connect(spreadsheet, SIGNAL(modified()),
+//             this, SLOT(spreadsheetModified()));
+//     updateStatusBar();
+// }

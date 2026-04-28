@@ -16,6 +16,7 @@
 #include <QString>
 #include <QAction>
 #include <QMenu>
+#include <QToolBar>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -44,8 +45,8 @@ private slots:
 private:
     void createActions();
     void createMenus();
-    // void createContextMenu();
-    // void createToolBars();
+    void createContextMenu();
+    void createToolBars();
     // void createStatusBar();
 
 private:
@@ -56,5 +57,9 @@ private:
 
     // Menu
     QMenu *fileMenu;
+
+    // Toolbar
+    QToolBar* fileToolBar;
+    QToolBar* editToolBar;
 };
 #endif // MAINWINDOW_H
