@@ -14,6 +14,12 @@ After build, fix missing all on Window:
     - Find `qwindows.dll` in: Qt_install_folder/6.5.3/mingw_64/plugins/platforms
     - Creat a folder `platforms` in same folder of executation file, put `qwindows.dll` here
 
+After build, fix some android build application issue
+- Build `apk` for Qt5 framework if require lower JDK version: [ code/_x_Note/_qt5_android_21.txt](https://github.com/TrinhHuuGiang/Learn-cpp-qt/blob/12ef8609d20a0fa69be258320b09ad485c14dcc0/code/_x_Note/_qt5_android_21.txt)
+- Check which android platform `apk` supported: https://stackoverflow.com/questions/8300822/android-how-to-find-which-platform-version-an-apk-targets 
+- Fix `apk` built not expected platform (v7a, v8a, x86,...): https://forum.qt.io/topic/131620/qt-5-15-2-clang-multi-abi-issue-no-arm64-build/2
+
+
 ## Openning with some highlight content
 - [Reimplement the closeEvent()](#reimplement-the-closeevent)
 
