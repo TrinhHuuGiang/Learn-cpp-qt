@@ -23,6 +23,9 @@ Qt using the **actions** handle contexts inside them:
 - [Create a context menu when right click on QObject](#create-a-context-menu-when-right-click-on-qobject)
 
 - [Create toolbars, set it to toolbar areas](#create-toolbars-set-it-to-toolbar-areas)
+    - Issue: Do not add the same **QAction** in the same **QToolBar**,
+    it will cause lost icon when click Aconton in Toolbar.
+    - The same problem with **Qmenu** and and **menuBar()**
 
 - [Setup content to status bar]()
 

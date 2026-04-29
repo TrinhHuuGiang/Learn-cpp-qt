@@ -62,6 +62,8 @@ private:
     // Action
     QAction *newAction;
 
+    QAction *color_red_act;
+
     // Menu
     QMenu *fileMenu;
 

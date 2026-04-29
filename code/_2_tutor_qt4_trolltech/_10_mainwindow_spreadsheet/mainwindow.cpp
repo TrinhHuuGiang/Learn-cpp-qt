@@ -12,6 +12,8 @@
 // Qt misc
 #include <QDebug>
 
+#include <QPixmap> // pixel image
+
 /**
  * ==================================================
  * Main window class
@@ -80,6 +82,22 @@ void MainWindow::createActions()
     // Signal: triggered()
     connect(newAction, SIGNAL(triggered()), this, SLOT(newFile()));
 
+
+    // Action: color_red_act
+    // Label and parent:
+    color_red_act = new QAction(tr("&RED"), this);
+
+    QPixmap pix_red(32,32);
+    pix_red.fill(Qt::red);
+    color_red_act->setIcon(QIcon(pix_red));
+
+    // Shortcut
+    color_red_act->setShortcut(tr("Ctrl+R"));
+    // Status
+    color_red_act->setStatusTip(tr("This is a RED action"));
+    // Signal: triggered()
+        // no trigger
+
 }
 
 void MainWindow::createMenus()
@@ -89,13 +107,17 @@ void MainWindow::createMenus()
 
     fileMenu->addSeparator();
 
-    fileMenu->addAction(newAction); // check no duplicate when display menu
+    // fileMenu->addAction(newAction); // check no duplicate when display menu
 
+    fileMenu->addAction(color_red_act);
 }
 
 void MainWindow::createContextMenu()
 {
     menuBar()->addAction(newAction);
+
+    menuBar()->addAction(color_red_act);
+
     menuBar()->setContextMenuPolicy(Qt::ActionsContextMenu);
 }
 
@@ -108,7 +130,10 @@ void MainWindow::createToolBars()
     editToolBar = addToolBar(tr("&Edit"));
     editToolBar->addAction(newAction);
     editToolBar->addSeparator();
-    editToolBar->addAction(newAction); // check no duplicate when display
+    // editToolBar->addAction(newAction); // check no duplicate when display
+
+    editToolBar->addAction(color_red_act);
+
 }
 
 
