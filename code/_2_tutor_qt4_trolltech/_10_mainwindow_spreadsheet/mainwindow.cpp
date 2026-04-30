@@ -26,8 +26,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    this->showMaximized();
-
     createActions();
     createMenus();
     createContextMenu();
