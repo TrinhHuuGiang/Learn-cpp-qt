@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "spreadsheet.h"
 
 #include <QApplication>
 
@@ -23,6 +24,11 @@ int main(int argc, char *argv[])
     MainWindow w;
     // w.show();
     w.showFullScreen();
+
+    Spreadsheet* spreadsheet = new Spreadsheet; // set must be pointer
+
+    // set ownership, spreadsheet now at central of main window
+    w.setCentralWidget(spreadsheet);
 
     return a.exec();
 }

@@ -48,6 +48,7 @@ Index:
 
 - **QMainWindow**: 
     - `mt` statusBar()->addWidget(), `sl` updateStatusBar()
+    - `mt` setCentralWidget()
 
 - **QDialog**: 
     - `mt` exec(), `sl` accept(), reject()

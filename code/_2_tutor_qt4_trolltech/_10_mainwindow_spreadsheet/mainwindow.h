@@ -10,7 +10,7 @@
 #include "sortdialog.h"
 
 // Custom libs
-#include "spreadsheet.h"
+// #include "spreadsheet.h" // add at main.c
 
 // Qt lib
 #include <QString>

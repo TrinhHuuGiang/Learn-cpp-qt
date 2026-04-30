@@ -1,21 +1,22 @@
-Initialize project: **Spreadsheet**
+Follow project: **Spreadsheet**
 
 ## Content
-- [Reimplement the closeEvent()](#reimplement-the-closeevent)
-- [setWindowIcon()]()
-    - Only set window icon, can't set desktop icon
-    - Desktop icon depend on each OS, implement out side the program
-- [Qt resoure system](#qt-resoure-system)
-    - **qrc** has path prefix for resource from root: **:/**
+- [QTableWidget area](#qtablewidget-area)
+- [QTableWidget method](#qtablewidget-method)
 
 ---
 
-## Reimplement the closeEvent()
+## QTableWidget area
+A **QTableWidget** is composed of several child widgets:
+
+![QTableWidget](./rss/_12_table_widget_area.png)
+
+- 2 **QHeaderView** at top and left
+- 2 **QScrollBars** at right and bottom
 
 ---
 
-## setWindowIcon()
+## QTableWidget method
 
----
+- Note **itemChanged(QTableWidgetItem *)** signal
 
-## Qt resoure system
