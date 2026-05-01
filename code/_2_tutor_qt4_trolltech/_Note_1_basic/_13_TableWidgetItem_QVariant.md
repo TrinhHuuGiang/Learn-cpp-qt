@@ -1,5 +1,8 @@
 Follow project: **Spreadsheet**
 
+- Comming soon : QVariant
+- addition note: virtual `clone()`, `setData()`, `data()`
+
 ## Content
 - [QTableWidgetItem](#qtablewidgetitem)
 - [QTableWidget method](#qtablewidget-method)

@@ -1,5 +1,5 @@
 This section focus on collects and groups any QObject:  
-method `mt`, signal `sn`, slot `sl`, function `f`, macros `mr`,
+method `mt`, signal `sn`, slot `sl`, function `f`, macros `mr`, virtual `vt`
 ... available when design Widget GUI.
 
 May try type any result below into QtCreator then click, type `F1` to see it
@@ -22,8 +22,20 @@ Index:
 - **QObject**: 
     - `mt` connect(), `mr` SIGNAL(), SLOT()
     - Classes: 
-        - header: `mr` Q_OBJECT, signal, private slot
+        - header: 
+            - `mr` Q_OBJECT, signal, private slot
+            - `mr` _Q_PROPERTY(  
+                **property type**  property_name  
+                **READ**  read_func/getter  
+                **WRITE (optional)**  write_func/setter  
+                ... and more)
+                - set custom properties exist in Qt UI Design mode
+                - setup after Q_OBJECT
+                - _Q_PROPERTY more information `F1` in QtCreator
+
         - source: `mr` emit
+
+
 - **QRegularExpression** create a validator with input **QRegularExpression** rule.
     - Sometime using as child of widget input: `QLineEdit`
 
@@ -90,6 +102,7 @@ Index:
 
 - **QSlider**:  `mt` setRange(), `sn` valueChanged(), `sl` setValue()
 - **QSpinBox**: `mt` setRange(), `sn` valueChanged(), `s;` setValue()
+    - `mt` `vt` textFromValue(),  valueFromText(), validate()
 
 - **QComboBox**: `mt` clear(), addItem(), `sl` setVisible()
 

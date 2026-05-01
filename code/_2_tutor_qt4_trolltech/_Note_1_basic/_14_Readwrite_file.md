@@ -1,3 +1,1 @@
-- why using QPixmap: available painting bitmap image, fast render 
-- why not QIcon: need generate mutiple size before use
-- why not QImage: need image processing (edit, filter) from CPU
+- Will write at chapter 12: Input.output

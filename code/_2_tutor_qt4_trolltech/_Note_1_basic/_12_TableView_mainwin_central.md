@@ -1,5 +1,7 @@
 Follow project: **Spreadsheet**
 
+- Addition soon: itemChanged() signal
+
 ## Content
 - [QTableWidget area](#qtablewidget-area)
 - [QTableWidget method](#qtablewidget-method)
