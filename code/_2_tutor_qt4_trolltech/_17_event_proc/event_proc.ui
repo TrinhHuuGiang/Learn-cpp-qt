@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Event_Proc</class>
+ <widget class="QWidget" name="Event_Proc">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Event_Proc</string>
+  </property>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

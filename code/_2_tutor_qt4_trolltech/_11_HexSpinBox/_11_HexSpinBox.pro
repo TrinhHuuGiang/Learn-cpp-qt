@@ -21,14 +21,14 @@ CONFIG += c++17
 # - into: D:\...\Qt\Installtion\Tools\QtCreator\bin\plugins\designer
 #
 
-QT += designer uiplugin
-CONFIG += plugin
-TEMPLATE = lib
-DESTDIR = $(QTDIR)/plugins/designer   #old in Qt4 but working, generated .dll file
+# QT += designer uiplugin
+# CONFIG += plugin
+# TEMPLATE = lib
+# DESTDIR = $(QTDIR)/plugins/designer   #old in Qt4 but working, generated .dll file
 
-# TARGET = $$qtLibraryTarget($$TARGET)  # Not working
-# target.path = $$[QT_INSTALL_PLUGINS]/designer
-# INSTALLS += target
+## TARGET = $$qtLibraryTarget($$TARGET)  # Not working
+## target.path = $$[QT_INSTALL_PLUGINS]/designer
+## INSTALLS += target
 
 # ==========================================
 
@@ -49,8 +49,7 @@ HEADERS += \
     iconeditor.h \
     iconeditorplugin.h
 
-FORMS += \
-    hexspinbox.ui
+FORMS +=
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
