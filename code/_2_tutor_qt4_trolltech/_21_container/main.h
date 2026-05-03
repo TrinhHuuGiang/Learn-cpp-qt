@@ -14,5 +14,7 @@ void test_QVector();
 // QQueue and QStack
 void test_QQ_QS();
 
+// QMap
+void test_QMap();
 
 #endif // MAIN_H

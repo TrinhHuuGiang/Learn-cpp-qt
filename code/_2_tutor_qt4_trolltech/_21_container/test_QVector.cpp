@@ -23,9 +23,9 @@ void test_QVector()
     qDebug()<<"Elems vect_1:";
     for(int i = 0 ; i < vect_1.size() ; i ++)
     {
-        printf("[%d] %.3f\n", i, vect_1[i]);
+        std::fprintf(stdout,"[%d] %.3f\n", i, vect_1[i]);
     }
 
-    fflush(stdout); // default in C printf is stdout
-    fflush(stderr); // but here we test, it is stderr
+    std::fflush(stdout); // default in C printf is stdout
+    // std::fflush(stderr); // but here we test, it is stderr
 }

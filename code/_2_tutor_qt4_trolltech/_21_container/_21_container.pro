@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    test_QMap.cpp \
     test_QVector.cpp \
     test_Queue_Stack.cpp
 

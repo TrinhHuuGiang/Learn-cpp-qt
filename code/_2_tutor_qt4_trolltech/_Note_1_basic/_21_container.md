@@ -1,18 +1,38 @@
+For all the container classes seen so far, the value type **T** can be a basic type
+like: int or double, a pointer type, **or** a class that has:
+- a default constructor (a constructor that takes no arguments)
+- a copy constructor
+- and an assignment operator. 
 
+The value type T can also be a container, in which case we must remember to
+separate consecutive angle brackets with spaces; otherwise, the compiler will
+choke on what it thinks is a >> operator. For example:
+
+```cpp
+    QList<QVector<double> > list;
+```
+
+In Qt, the Qt classes that **inherit from QObject** do not qualify, because they
+lack a copy constructor and an assignment operator.
+
+Basic classes that qualify in Qt include: QByteArray, QDateTime, QRegExp, QString and QVariant. 
 
 ## Content
 1. C++ container (see more at *https://cplusplus.com/reference/stl/*)
-- array
-- vector
-- list
-- forward_list
-- queue
-- deque
-- stack
-- map
-- unordered_map
-- set
-- unordered_set
+- Sequential Containers: items store at adjacent positions in memory.
+    - array
+    - vector
+    - list
+    - forward_list
+    - queue
+    - deque
+    - stack
+- Associative Containers:  The items have the same type, may store or not adjacent in memory
+    but indexed by a key.
+    - map == unique hey|value
+    - unordered_map == hash by unique key
+    - set == unique value
+    - unordered_set == hash by unique value
 
 ---
 
@@ -38,7 +58,13 @@
 - QStack<T> 
     - is a vector that provides push(), pop(), and top(). 
 - QQueue<T> 
-    - is a list that provides enqueue(), dequeue(), and head()
+    - is a list (maybe linkedlist :V) that provides enqueue(), dequeue(), and head()
 
-    
+- QMap<K, T> 
+    - is a data structure that stores key–value pairs in **ascending** key (**K**) order.
+    - search by inside AVL binary tree structure.
+    - The **key type** of a QMap **must provide operator<()** specifying a total order. 
+
+- QHash<T>
+    - The key type of a QHash must provide **operator==()** and a global **qHash(Key) function**.
 ---
