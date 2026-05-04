@@ -65,6 +65,10 @@ Basic classes that qualify in Qt include: QByteArray, QDateTime, QRegExp, QStrin
     - search by inside AVL binary tree structure.
     - The **key type** of a QMap **must provide operator<()** specifying a total order. 
 
-- QHash<T>
+- QHash<K, T>
     - The key type of a QHash must provide **operator==()** and a global **qHash(Key) function**.
+    - **QHash** class has same style member function with **QMap** but different the data structure inside:
+        - Hash using for fast data look up with key. Example: topic, random event, ...
+        - Map using when require key with order. Example: timeline, task list, ...
+
 ---

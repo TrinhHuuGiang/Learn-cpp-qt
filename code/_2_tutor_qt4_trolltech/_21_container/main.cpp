@@ -22,4 +22,8 @@ int main(int argc, char *argv[])
     qDebug()<< "---------------QMap";
     test_QMap();
 
+    // QHash
+    qDebug()<< "---------------QHash";
+    test_QHash();
+
 }

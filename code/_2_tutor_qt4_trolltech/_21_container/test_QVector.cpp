@@ -26,6 +26,6 @@ void test_QVector()
         std::fprintf(stdout,"[%d] %.3f\n", i, vect_1[i]);
     }
 
-    std::fflush(stdout); // default in C printf is stdout
-    // std::fflush(stderr); // but here we test, it is stderr
+    std::fflush(stdout);    // not working
+    std::fflush(stderr);    // working ???
 }

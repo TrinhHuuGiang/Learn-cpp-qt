@@ -17,4 +17,8 @@ void test_QQ_QS();
 // QMap
 void test_QMap();
 
+// QMap
+void test_QHash();
+
+
 #endif // MAIN_H

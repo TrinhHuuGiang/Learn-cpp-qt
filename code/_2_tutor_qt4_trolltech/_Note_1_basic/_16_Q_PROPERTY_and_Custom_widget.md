@@ -1,7 +1,7 @@
 ## Content
 - [custom HexSpinBox](#custom-the-spinbox-hexspinbox)
-- [Q_PROPERTY]
-- [create an IconEditor Widget]()
+- Q_PROPERTY: see code **_11_HexSpinbox** [here](../_11_HexSpinBox/)
+- create an IconEditor Widget: see code **_11_HexSpinbox** [here](../_11_HexSpinBox/)
 
 - [Add custom widget into Design mode by `Plugin`]()
     - Note before create plugin, add this module in **.pro** file: **QT += designer**
