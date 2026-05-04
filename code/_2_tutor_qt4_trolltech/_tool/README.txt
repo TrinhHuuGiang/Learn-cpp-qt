@@ -1,0 +1,1 @@
+You can get sqlite3 tools here: https://sqlite.org/download.html
