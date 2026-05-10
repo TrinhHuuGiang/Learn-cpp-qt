@@ -6,9 +6,10 @@
         ``` txt
             Container Widget
             ( 
-                Layout 
+                Layout (no become parent)
                 (
-                    UI Widget
+                    UI Widget (parent is Container Widget)
+                        // if Layout not bind any widget, this UI Widget has parent NULL
                 )
             )
         ```

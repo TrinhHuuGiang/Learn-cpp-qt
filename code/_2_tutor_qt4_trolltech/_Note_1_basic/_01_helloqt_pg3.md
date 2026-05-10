@@ -3,6 +3,7 @@
     - Briefly describe the main function of a Qt program.
     - Some Qt objects: application management object, widget, and some
     their method.
+    - QApplication with main thread problem.
     - Build application by Qt Creator 6.5
 
 ## Hello Qt
@@ -42,6 +43,9 @@ unwanted content.
 Line **008**: After configure widget done, passes the control of application to Qt through management object as `QApplication` in this example.
 - The method `exec()` make `QApplication` run an event loop to check any
 user action emit a signal. Example: a widget is clicked, mouse release,...
+- **QApplication `exec()` can't run outside main thread.**
+Many OS have concept send UI signal (keyboard, click, resize,...) to main thread.
+
 
 --- 
 
