@@ -9,6 +9,8 @@ class work_Manager;
 
 class QMessageBox;
 
+class animation_Widget;
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -42,6 +44,10 @@ private:
 
     QMessageBox* msgbox_closing;
     bool close_safe = false;
+
+
+private:
+    animation_Widget *animWidget;
 
 };
 #endif // MAINWINDOW_H

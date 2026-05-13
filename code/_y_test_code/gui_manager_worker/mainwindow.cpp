@@ -7,6 +7,7 @@
 
 #include <QThread>
 #include "work_manager.h"
+#include "animation_widget.h"
 
 #include <QDebug>
 
@@ -41,6 +42,18 @@ MainWindow::MainWindow(QWidget *parent)
         // this mainwindow onManagerFinished() will quit(), queue stop give more event
     connect(work_manager, SIGNAL(end_ack_from_manager()),
             this, SLOT(onManagerFinished()), Qt::QueuedConnection);
+
+
+
+
+
+    animWidget = new animation_Widget(this);
+    // set to central
+    this->setCentralWidget(animWidget);
+
+
+    connect(work_manager, SIGNAL(tick()),
+            animWidget, SLOT(onTick()));
 }
 
 MainWindow::~MainWindow()
@@ -51,8 +64,9 @@ MainWindow::~MainWindow()
     // wait thread end
     thread_manager->quit();
     thread_manager->wait();
-        // not sure: thread_manager->deleteLater();
-        // because after quit, thread_manager queue stopped receives more event.
+        // thread_manager->deleteLater(); can't use, although both in same thread
+        // it make thread_manager delete after mainWindow.
+        // seem unnatural, deleted mainWindow -> thread_manager pointer become dangling pointer.
     delete thread_manager;
 
     //qDebug

@@ -12,9 +12,9 @@
  *
  *
  * Some note:
- * - Message dialog when `exec` will block main thread.
+ * 1. Message dialog when `exec` will block main thread.
  *      - using `show` instead will display as normal widget without blocking
- * - After MainWindow w close success, see that main() print:
+ * 2. After MainWindow w close success, see that main() print:
  *      qDebug() << "main event loop end !";
  *   But `msgbox_closing` of w still displays
  *   That mean `QApplication::exec` do not care the `QMessageBox`
@@ -28,6 +28,18 @@
  *      `
  *   => QMessageBox run in itself event loop, independent with main event loop.
  *
+ * 3. Which thread the QThread belong to?
+ *      - refer: https://doc.qt.io/qt-6/qthread.html
+ *      `
+ *      It is important to remember that a QThread instance lives in the
+ *      old thread that instantiated it, not in the new thread that calls run().
+ *      This means that all of QThread's queued slots and invoked methods will
+ *      execute in the old thread. Thus, a developer who wishes to invoke slots
+ *      in the new thread must use the worker-object approach; new slots should
+ *      not be implemented directly into a subclassed QThread.
+ *      `
+ *      - So QThread belong to the thread (A) initialized it.
+ *      - Signal - slot on >QThread< will executed in thread (A)
  */
 
 

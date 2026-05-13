@@ -51,6 +51,15 @@ work_Manager::work_Manager(QObject *parent)
     connect(worker_3, SIGNAL(end_ack_from_worker()),
             this, SLOT(on_workers_finished()), Qt::QueuedConnection);
 
+
+
+
+
+    connect(timer, SIGNAL(timeout()),
+            this, SLOT(onTimeout()));
+
+    timer->start(16);
+
 }
 
 
@@ -60,11 +69,9 @@ work_Manager::~work_Manager()
 
     thread_worker->quit();
     thread_worker->wait();
-        // not sure: thread_worker->deleteLater();
-        // because after quit, thread_worker queue stopped receives more event.
     delete thread_worker;
 
-    qDebug()<< "work manager end (-_-), delay 1s";
+    qDebug()<< "work manager end (-_-), delay 1";
 }
 
 void work_Manager::end_manager()
@@ -85,4 +92,11 @@ void work_Manager::on_workers_finished()
         emit end_ack_from_manager();
         deleteLater();
     }
+}
+
+
+
+void work_Manager::onTimeout()
+{
+    emit tick();
 }

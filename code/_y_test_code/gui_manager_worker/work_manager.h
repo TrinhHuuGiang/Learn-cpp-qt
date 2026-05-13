@@ -5,6 +5,7 @@
 
 class cheap_Worker;
 class QThread;
+#include <QTimer>
 
 class work_Manager : public QObject
 {
@@ -24,6 +25,14 @@ signals:
 private slots:
     void on_workers_finished();
 
+
+signals:
+    void tick();
+private slots:
+    void onTimeout();
+
+
+
 private:
     QThread* thread_worker;
 
@@ -32,6 +41,9 @@ private:
     cheap_Worker* worker_3;
 
     int total_worker_running = 0;
+
+
+    QTimer *timer = new QTimer(this);
 };
 
 #endif // WORK_MANAGER_H
