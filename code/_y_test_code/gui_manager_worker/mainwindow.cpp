@@ -51,7 +51,9 @@ MainWindow::~MainWindow()
     // wait thread end
     thread_manager->quit();
     thread_manager->wait();
-    thread_manager->deleteLater();
+        // not sure: thread_manager->deleteLater();
+        // because after quit, thread_manager queue stopped receives more event.
+    delete thread_manager;
 
     //qDebug
     qDebug()<< "MainWindow end (-_-)";
