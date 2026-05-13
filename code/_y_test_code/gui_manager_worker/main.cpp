@@ -14,6 +14,20 @@
  * Some note:
  * - Message dialog when `exec` will block main thread.
  *      - using `show` instead will display as normal widget without blocking
+ * - After MainWindow w close success, see that main() print:
+ *      qDebug() << "main event loop end !";
+ *   But `msgbox_closing` of w still displays
+ *   That mean `QApplication::exec` do not care the `QMessageBox`
+ *
+ *   when F1 on `QApplication::exec` Qt point that:
+ *      `
+ *      Generally, no user interaction can take place before calling exec().
+ *      As a special case, modal widgets like QMessageBox can be used before
+ *      calling exec(), because modal widgets call exec() to start a local
+ *      event loop.
+ *      `
+ *   => QMessageBox run in itself event loop, independent with main event loop.
+ *
  */
 
 
@@ -23,6 +37,10 @@
 #include <QObject>
 
 #include <QApplication>
+
+#include <QThread>
+
+#include <QDebug>
 
 int main(int argc, char *argv[])
 {
@@ -86,6 +104,7 @@ int main(int argc, char *argv[])
     w.show();
     ret_exec = a.exec();
 
+    qDebug() << "main event loop end !";
 
     /* ===== Stop Thread =====
      * - After QThread::quit(), it tells the thead event loop to exit
@@ -118,5 +137,8 @@ int main(int argc, char *argv[])
     /* ===== Clean =====*/
 
     /* ===== End =====*/
+
+
+    // delay
     return ret_exec;
 }
