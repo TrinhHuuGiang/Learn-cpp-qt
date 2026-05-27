@@ -9,8 +9,12 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets
+    Core # need for android JNI
+    )
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets
+    Core
+    )
 
 set(PROJECT_SOURCES
         main.cpp
@@ -24,6 +28,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         android/gradle/wrapper/gradle-wrapper.jar android/gradle/wrapper/gradle-wrapper.properties android/res/mipmap-anydpi-v26/sunset.xml android/res/mipmap-hdpi/sunset.png android/res/mipmap-hdpi/sunset_adaptive_back.png android/res/mipmap-hdpi/sunset_adaptive_fore.png android/res/mipmap-mdpi/sunset.png android/res/mipmap-mdpi/sunset_adaptive_back.png android/res/mipmap-mdpi/sunset_adaptive_fore.png android/res/mipmap-xhdpi/sunset.png android/res/mipmap-xhdpi/sunset_adaptive_back.png android/res/mipmap-xhdpi/sunset_adaptive_fore.png android/res/mipmap-xxhdpi/sunset.png android/res/mipmap-xxhdpi/sunset_adaptive_back.png android/res/mipmap-xxhdpi/sunset_adaptive_fore.png android/res/mipmap-xxxhdpi/sunset.png android/res/mipmap-xxxhdpi/sunset_adaptive_back.png android/res/mipmap-xxxhdpi/sunset_adaptive_fore.png android/res/values/libs.xml android/AndroidManifest.xml android/build.gradle android/gradle.properties android/gradlew android/gradlew.bat
+        android/src/QtAndroidService.java
+        btnpushservice.h btnpushservice.cpp
+        android/src/NotificationClient.java
+        notificationclient.h notificationclient.cpp
+
+
     )
 
     if(ANDROID)
@@ -50,7 +60,9 @@ else()
     endif()
 endif()
 
-target_link_libraries(foreground_sv_test PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(foreground_sv_test PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
+                    Qt6::CorePrivate # need for android JNI
+                    )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

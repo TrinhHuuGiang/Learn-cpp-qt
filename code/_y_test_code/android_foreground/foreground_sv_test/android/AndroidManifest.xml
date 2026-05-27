@@ -20,7 +20,9 @@
         android:allowBackup="true"
         android:fullBackupOnly="false"
         android:icon="@mipmap/sunset">
-                <!-- Appended: icon -->
+<!--  application appended properties:
+        icon mipmap -->
+
         <activity
             android:name="org.qtproject.qt.android.bindings.QtActivity"
             android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density"
@@ -45,5 +47,19 @@
                 android:name="android.app.extract_android_style"
                 android:value="minimal" />
         </activity>
+
+<!-- Add Service:  -->
+        <service android:name=".QtAndroidService" android:exported="true">
+            <!-- Background running -->
+            <meta-data android:name="android.app.background_running" android:value="true"/>
+            <!-- Background running -->
+        </service>
+
+        <service android:name=".NotificationClient" android:exported="true">
+            <!-- Background running -->
+            <meta-data android:name="android.app.background_running" android:value="true"/>
+            <!-- Background running -->
+        </service>
+
     </application>
 </manifest>
