@@ -14,6 +14,8 @@ import android.graphics.Color;
 import android.graphics.BitmapFactory;
 import android.app.NotificationChannel;
 
+import opensource.giangtrinh.fgsv_test.R;   // see package path in AndroidManifest
+
 public class NotificationClient
 {
     public static void notify(Context context, String message) {
