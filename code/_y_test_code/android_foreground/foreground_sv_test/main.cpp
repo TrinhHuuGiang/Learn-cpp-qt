@@ -130,41 +130,60 @@
 #include <QDebug>
 
 
+#include <cstring>
+
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
+    if (argc <= 1) {
+        // code to handle main activity execution
 
-    QWidget* wget_custom_center = new QWidget();
-    QHBoxLayout* hbox_btn = new QHBoxLayout();
+        QApplication a(argc, argv);
+        MainWindow w;
 
-    wget_custom_center->setLayout(hbox_btn);
-    w.setCentralWidget(wget_custom_center);
+        QWidget* wget_custom_center = new QWidget();
+        QHBoxLayout* hbox_btn = new QHBoxLayout();
 
-
-    BtnPushService* btn_start_service = new BtnPushService();
-    btn_start_service->setText("Start service !!");
-
-    QPushButton* btn_start_happy_notification = new QPushButton();
-    QPushButton* btn_start_sad_notification = new QPushButton();
-
-    btn_start_happy_notification->setText("Happy notification !!");
-    btn_start_sad_notification->setText("Sad notification !!");
+        wget_custom_center->setLayout(hbox_btn);
+        w.setCentralWidget(wget_custom_center);
 
 
-    hbox_btn->addWidget(btn_start_service);
+        BtnPushService* btn_start_service = new BtnPushService();
+        btn_start_service->setText("Start service !!");
 
-    hbox_btn->addWidget(btn_start_happy_notification);
-    hbox_btn->addWidget(btn_start_sad_notification);
+        QPushButton* btn_start_happy_notification = new QPushButton();
+        QPushButton* btn_start_sad_notification = new QPushButton();
+
+        btn_start_happy_notification->setText("Happy notification !!");
+        btn_start_sad_notification->setText("Sad notification !!");
 
 
-    // connect
-    NotificationClient* notify_worker = new NotificationClient();
-    notify_worker->setParent(&w);
+        hbox_btn->addWidget(btn_start_service);
 
-    QWidget::connect(btn_start_happy_notification, SIGNAL(clicked()), notify_worker, SLOT(setNotificationHappy()));
-    QWidget::connect(btn_start_sad_notification, SIGNAL(clicked()), notify_worker, SLOT(setNotificationSad()));
+        hbox_btn->addWidget(btn_start_happy_notification);
+        hbox_btn->addWidget(btn_start_sad_notification);
 
-    w.show();
-    return a.exec();
+
+        // connect
+        NotificationClient* notify_worker = new NotificationClient();
+        notify_worker->setParent(&w);
+
+        QWidget::connect(btn_start_happy_notification, SIGNAL(clicked()), notify_worker, SLOT(setNotificationHappy()));
+        QWidget::connect(btn_start_sad_notification, SIGNAL(clicked()), notify_worker, SLOT(setNotificationSad()));
+
+        w.show();
+        return a.exec();
+
+
+    } else if (argc > 1 && strcmp(argv[1], "-service-notify") == 0) {
+        qDebug() << "Service notify starting with from the same .so file";
+        QAndroidService app(argc, argv);
+        return app.exec();
+    } else if (argc > 1 && strcmp(argv[1], "-service-qt") == 0) {
+        qDebug() << "Service Qt android starting with from the same .so file";
+        QAndroidService app(argc, argv);
+        return app.exec();
+    } else {
+        qWarning() << "Unrecognized command line argument";
+        return -1;
+    }
 }
