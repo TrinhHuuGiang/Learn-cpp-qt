@@ -135,17 +135,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
 
-// // [WARN] it doesn't work
-// #if defined(Q_OS_ANDROID)
-//     auto activity = QJniObject(QNativeInterface::QAndroidApplication::context());
-//     QAndroidIntent serviceIntent(activity.object(),
-//                                 "QtAndroidService");
-//     QJniObject result = activity.callObjectMethod(
-//         "startService",
-//         "(Landroid/content/Intent;)Landroid/content/ComponentName;",
-//         serviceIntent.handle().object());
-// #endif
-
     QWidget* wget_custom_center = new QWidget();
     QHBoxLayout* hbox_btn = new QHBoxLayout();
 
@@ -162,7 +151,9 @@ int main(int argc, char *argv[])
     btn_start_happy_notification->setText("Happy notification !!");
     btn_start_sad_notification->setText("Sad notification !!");
 
+
     hbox_btn->addWidget(btn_start_service);
+
     hbox_btn->addWidget(btn_start_happy_notification);
     hbox_btn->addWidget(btn_start_sad_notification);
 

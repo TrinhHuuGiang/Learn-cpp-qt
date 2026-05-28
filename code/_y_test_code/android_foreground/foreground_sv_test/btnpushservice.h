@@ -28,7 +28,7 @@ private slots:
 #if defined(Q_OS_ANDROID)
         auto activity = QJniObject(QNativeInterface::QAndroidApplication::context());
         QAndroidIntent serviceIntent(activity.object(),
-                                     "QtAndroidService");
+                                     "opensource/giangtrinh/fgsv_test/src/QtAndroidService");
         QJniObject result = activity.callObjectMethod(
             "startService",
             "(Landroid/content/Intent;)Landroid/content/ComponentName;",

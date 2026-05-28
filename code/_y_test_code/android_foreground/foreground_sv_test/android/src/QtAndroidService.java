@@ -1,3 +1,9 @@
+/*
+Refer: https://doc.qt.io/qt-6.5/android-services.html
+*/
+
+package opensource.giangtrinh.fgsv_test.src;
+
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;

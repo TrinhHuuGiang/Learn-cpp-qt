@@ -16,6 +16,8 @@ public:
     explicit NotificationClient(QObject *parent = nullptr);
 
 private:
+    void startAndroidNotification();
+
     void setNotification(const QString &notification);
     // QString notification() const;
 

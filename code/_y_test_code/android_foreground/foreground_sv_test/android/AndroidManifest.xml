@@ -19,7 +19,7 @@
 
 <!-- users-permission appended
     FOREGROUND_SERVICE,
-    FOREGROUND_SERVICE_DATA_SYNC // services: .NotificationClient
+    FOREGROUND_SERVICE_DATA_SYNC // services:for .NotificationClient
 -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
@@ -72,14 +72,16 @@ icon mipmap -->
 <!-- Add Service:
     android:exported="true" -> open to receive Intent from other process.
         Sometime using while run service in independent process
+
 -->
-        <service android:name=".QtAndroidService" android:exported="false">
+        <service android:name="opensource.giangtrinh.fgsv_test.src.QtAndroidService" android:exported="false">
             <!-- Background running -->
             <meta-data android:name="android.app.background_running" android:value="true"/>
             <!-- Background running -->
         </service>
 
-        <service android:name=".NotificationClient" android:exported="false"
+
+        <service android:name="opensource.giangtrinh.fgsv_test.src.NotificationClient" android:exported="false"
             android:foregroundServiceType="dataSync"
             >
             <!-- Background running -->
