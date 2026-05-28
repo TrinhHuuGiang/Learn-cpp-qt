@@ -85,6 +85,7 @@ icon mipmap -->
 Notice:
     - make service run in another process, add property below:
         android:process=":qt_service"
+            <- this is thread name for service
             <- can change and find pid by: adb shell pidof opensource.giangtrinh.fgsv_test:qt_service
     - the addition tag below inside `service` only useful while run service in another process:
         (comment) Application arguments
