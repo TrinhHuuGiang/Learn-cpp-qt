@@ -79,36 +79,39 @@ icon mipmap -->
             https://developer.android.com/develop/background-work/services/fgs/service-types
         - set argument by call the main() function twice while boot service:
             https://doc.qt.io/qt-6.5/android-services.html#use-the-same-so-lib-file
+
+    QtAndroidService: same
+
+Notice:
+    - make service run in another process, add property below:
+        android:process=":qt_service"
+    - the addition tag below inside `service` only useful while run service in another process:
+        (comment) Application arguments
+        <meta-data android:name="android.app.arguments" android:value="-service-notify"/>
+
+        <meta-data android:name="android.app.lib_name" android:value="...
+        (pls find remain code at: https://doc.qt.io/qt-6.5/android-services.html)
+
 -->
         <service android:name="opensource.giangtrinh.fgsv_test.src.QtAndroidService" android:exported="false">
             <!-- Background running -->
             <meta-data android:name="android.app.background_running" android:value="true"/>
             <!-- Background running -->
-
-            <!-- Background running -->
-            <meta-data android:name="android.app.background_running" android:value="true"/>
-            <!-- Background running -->
-
-            <!-- Application arguments -->
-            <meta-data android:name="android.app.arguments" android:value="-service-qt"/>
-            <!-- Application arguments -->
-
         </service>
 
-<!--        android:process=":qt_service"-->
         <service
+            android:process=":qt_service"
 
             android:name="opensource.giangtrinh.fgsv_test.src.NotificationClient" android:exported="false"
-            android:foregroundServiceType="dataSync"
-            >
+            android:foregroundServiceType="dataSync" >
+
             <!-- Background running -->
             <meta-data android:name="android.app.background_running" android:value="true"/>
             <!-- Background running -->
 
-            <!-- Application arguments -->
+            <!--Application arguments-->
             <meta-data android:name="android.app.arguments" android:value="-service-notify"/>
-            <!-- Application arguments -->
-
+            <!--Application arguments-->
             <meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
 
         </service>

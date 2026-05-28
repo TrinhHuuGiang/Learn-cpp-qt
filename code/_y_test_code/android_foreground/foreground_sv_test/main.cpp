@@ -74,7 +74,6 @@
  *      <application android:icon="@mipmap/file_icon_name" >
  *
  * B. Service in same process.
- *  In this example we focus run service in same process with
  *
  *  - Create `android/src/` folder to save Java code.
  *      - in QtCreator, right click then `add New...` -> `Java`
@@ -174,14 +173,29 @@ int main(int argc, char *argv[])
         return a.exec();
 
 
+
+/*
+ * These cases below only use when the background/foreground service
+ * are/is configured run in another process.
+ *
+ *  Because, when try configures run foreground service in same process
+ *      always crash when reopen app + keep foreground running.
+ *
+ *      That maybe android got trouble while reopen app if other
+ *      process runned this app before. It may not clean to reopen.
+ *
+ *  So this project configured run services in other process. See AndroidManifest.xml
+ */
     } else if (argc > 1 && strcmp(argv[1], "-service-notify") == 0) {
         qDebug() << "Service notify starting with from the same .so file";
         QAndroidService app(argc, argv);
         return app.exec();
-    } else if (argc > 1 && strcmp(argv[1], "-service-qt") == 0) {
-        qDebug() << "Service Qt android starting with from the same .so file";
-        QAndroidService app(argc, argv);
-        return app.exec();
+
+    // } else if (argc > 1 && strcmp(argv[1], "-service-qt") == 0) {
+    //     qDebug() << "Service Qt android starting with from the same .so file";
+    //     QAndroidService app(argc, argv);
+    //     return app.exec();
+
     } else {
         qWarning() << "Unrecognized command line argument";
         return -1;

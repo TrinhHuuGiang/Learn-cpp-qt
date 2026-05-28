@@ -38,7 +38,7 @@ public class NotificationClient extends QtService
     public void onCreate()
     {
         super.onCreate();
-        Log.i(TAG, "Creating Service");
+        Log.i(TAG, "Creating Service NotificationClient");
 
         // Tạo kênh thông báo (Notification Channel) cho Android O trở lên
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O)
@@ -67,14 +67,14 @@ public class NotificationClient extends QtService
     public void onDestroy()
     {
         super.onDestroy();
-        Log.i(TAG, "Destroying Service");
+        Log.i(TAG, "Destroying Service NotificationClient");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId)
     {
         int ret = super.onStartCommand(intent, flags, startId);
-        Log.i(TAG, "Starting Command");
+        Log.i(TAG, "Starting Command NotificationClient");
 
         // Đón Intent cập nhật từ C++ gửi sang
         if (intent != null && "UPDATE_NOTIFICATION".equals(intent.getAction())) {

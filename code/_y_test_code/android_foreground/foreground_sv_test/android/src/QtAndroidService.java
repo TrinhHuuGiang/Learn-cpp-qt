@@ -16,13 +16,13 @@ public class QtAndroidService extends QtService
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.i(TAG, "Creating Service");
+        Log.i(TAG, "Creating QtAndroidService");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i(TAG, "Destroying Service");
+        Log.i(TAG, "Destroying QtAndroidService");
     }
 
     @Override
