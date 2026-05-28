@@ -85,6 +85,7 @@ icon mipmap -->
 Notice:
     - make service run in another process, add property below:
         android:process=":qt_service"
+            <- can change and find pid by: adb shell pidof opensource.giangtrinh.fgsv_test:qt_service
     - the addition tag below inside `service` only useful while run service in another process:
         (comment) Application arguments
         <meta-data android:name="android.app.arguments" android:value="-service-notify"/>
@@ -100,7 +101,7 @@ Notice:
         </service>
 
         <service
-            android:process=":qt_service"
+            android:process=":qt_notify_service"
 
             android:name="opensource.giangtrinh.fgsv_test.src.NotificationClient" android:exported="false"
             android:foregroundServiceType="dataSync" >

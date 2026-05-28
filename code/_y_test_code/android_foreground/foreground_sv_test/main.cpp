@@ -18,6 +18,14 @@
  *      https://doc.qt.io/qt-6.5/qandroidintent.html
  * 8. Qt - Example app notification:
  *      https://doc.qt.io/qt-6.8/qtcore-platform-androidnotifier-example.html
+ * 9. Filter adb Logcat:
+ *      https://stackoverflow.com/questions/6854127/filter-logcat-to-get-only-the-messages-from-my-application-in-android
+ *
+ *      adb shell pidof com.example.myqtapp     => 12345
+ *      adb logcat --pid=12345
+ *
+ *      adb shell pidof com.example.myqtapp:process_name -> find process name in AndroidManifes.xml in service tag
+ *      adb logcat --pid=...
  *
  * ============================================================================
  *
