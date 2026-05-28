@@ -5,7 +5,7 @@
     android:versionCode="-- %%INSERT_VERSION_CODE%% --"
     android:versionName="-- %%INSERT_VERSION_NAME%% --">
 <!--manifest modified properties
-package="org.qtproject.example" -> package="opensource.giangtrinh.fgsv_test"
+    package="org.qtproject.example" -> package="opensource.giangtrinh.fgsv_test"
         note:
             - package is uni path for each app. change
             package will cause install new app on android
@@ -14,7 +14,18 @@ package="org.qtproject.example" -> package="opensource.giangtrinh.fgsv_test"
             to generate R class contain project resources
 -->
 
+
     <!-- %%INSERT_PERMISSIONS -->
+
+<!-- users-permission appended
+    FOREGROUND_SERVICE,
+    FOREGROUND_SERVICE_DATA_SYNC // services: .NotificationClient
+-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC"/>
+
+
+
     <!-- %%INSERT_FEATURES -->
     <supports-screens
         android:anyDensity="true"
@@ -58,14 +69,19 @@ icon mipmap -->
                 android:value="minimal" />
         </activity>
 
-<!-- Add Service:  -->
-        <service android:name=".QtAndroidService" android:exported="true">
+<!-- Add Service:
+    android:exported="true" -> open to receive Intent from other process.
+        Sometime using while run service in independent process
+-->
+        <service android:name=".QtAndroidService" android:exported="false">
             <!-- Background running -->
             <meta-data android:name="android.app.background_running" android:value="true"/>
             <!-- Background running -->
         </service>
 
-        <service android:name=".NotificationClient" android:exported="true">
+        <service android:name=".NotificationClient" android:exported="false"
+            android:foregroundServiceType="dataSync"
+            >
             <!-- Background running -->
             <meta-data android:name="android.app.background_running" android:value="true"/>
             <!-- Background running -->

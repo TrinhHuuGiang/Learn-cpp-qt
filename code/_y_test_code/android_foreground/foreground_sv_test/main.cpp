@@ -168,7 +168,8 @@ int main(int argc, char *argv[])
 
 
     // connect
-    NotificationClient* notify_worker = new NotificationClient(&w);
+    NotificationClient* notify_worker = new NotificationClient();
+    notify_worker->setParent(&w);
 
     QWidget::connect(btn_start_happy_notification, SIGNAL(clicked()), notify_worker, SLOT(setNotificationHappy()));
     QWidget::connect(btn_start_sad_notification, SIGNAL(clicked()), notify_worker, SLOT(setNotificationSad()));
